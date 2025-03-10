@@ -1,0 +1,1044 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/ipv6/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>IPv6 - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IPv6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IPv6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Теоретические сведения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Теоретические сведения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Особенности IPv6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Треминология
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основные зарезервированные адреса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Правила сокращения адресов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вычисление префикса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Способы назначения IPv6-адресов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Разделение на подсети
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Примеры
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Примеры">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-unicast-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 4 (unicast + Cisco)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-anycast-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 5 (anycast + Cisco)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>IPv6</h1>
+
+<h2 id="_1">Теоретические сведения</h2>
+<h3 id="ipv6">Особенности IPv6</h3>
+<ul>
+<li>Сетевой уровень</li>
+<li>Появился из-за нехватки IPv4-адресов<ul>
+<li>Временное решение - NAT</li>
+</ul>
+</li>
+<li>IPv6 несовместим с IPv4<ul>
+<li>Двойной стек</li>
+<li>Туннелирование </li>
+<li>Преобразование</li>
+</ul>
+</li>
+<li>Длина адреса 128 бит</li>
+</ul>
+<h3 id="_2">Треминология</h3>
+<ul>
+<li>Префикс<ul>
+<li><mark class="critic">2000<img alt="🔢" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f522.svg" title=":1234:" />0:abcd</mark>::ffe0/64</li>
+</ul>
+</li>
+<li>Длина префикса<ul>
+<li>2000<img alt="🔢" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f522.svg" title=":1234:" />0<img alt="🔡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f521.svg" title=":abcd:" />:ffe0/<mark class="critic">64</mark></li>
+</ul>
+</li>
+<li>Адрес интерфейса<ul>
+<li>2000<img alt="🔢" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f522.svg" title=":1234:" />0<img alt="🔡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f521.svg" title=":abcd:" /><mark class="critic">12::ffe0</mark>/64</li>
+</ul>
+</li>
+</ul>
+<h3 id="_3">Основные зарезервированные адреса</h3>
+<ul>
+<li><code>::1/128</code> - loopback</li>
+<li><code>::/0</code> - default gateway</li>
+<li><code>2001::/32</code>, <code>2002::/16</code> - global unicast</li>
+<li><code>fc00::/7</code> - unique local unicast<ul>
+<li>Могут использоваться внутри организации без регистрации</li>
+<li>Не маршрутизуруются в Интернет</li>
+</ul>
+</li>
+<li><code>fe80::/10</code> - link-local<ul>
+<li>Используются в рамках сегмента сети</li>
+<li>Задается устройством автоматически, но можно изменить</li>
+<li>Маршрутизаторы не передают пакеты в другой сегмент</li>
+</ul>
+</li>
+<li><code>2001:db8::/32</code>, <code>3fff::/20</code> - documentation</li>
+<li><code>ff00::/8</code> - multicast<ul>
+<li>Используются вместо <strong>широковещательных</strong> адресов, т.к. их нет в IPv6</li>
+<li><code>ff02::1</code> - все узлы в широковещательном домене</li>
+<li><code>ff02::2</code> - все маршрутизаторы в широковещательном домене</li>
+</ul>
+</li>
+</ul>
+<h3 id="_4">Правила сокращения адресов</h3>
+<p><code>3fff::0:0001:023:456/64</code>:</p>
+<ul>
+<li>Полный адрес - <code>3fff:0000:0000:0000:0000:0001:0023:0456/64</code></li>
+<li>Сокращенный, но не максимально - <code>3fff::0:1:23:456/64</code></li>
+<li>Максимально сокращенный адрес - <code>3fff::1:23:456/64</code></li>
+</ul>
+<p><code>3fff:0:0:0:1:0:0:0/64</code> можно сократить так <code>3fff::1:0:0:0/64</code> или так <code>3fff:0:0:0:1::/64</code>, но не так <code>3fff::1::/64</code>, поскольку нельзя точно сказать, в каком блоке <code>::</code> сколько нулевых блоков.</p>
+<p><code>3fff::0001/64</code> и <code>3fff::1000/64</code> - не одно и то же! <code>3fff::0001/64</code> - можно сократить до <code>3fff::1/64</code>, а второй адрес сократить больше нельзя.</p>
+<h3 id="_5">Вычисление префикса</h3>
+<ol>
+<li>
+<p>Если длина префикса кратна 16, то префикс граничит по символу <code>:</code>.</p>
+<ul>
+<li>
+<p><mark class="critic">3fff:0000:1111:2222</mark>:3333:4444:5555:6666/64 -&gt; <mark class="critic">3fff:0000:1111:2222</mark>:0000:0000:0000:0000/64 -&gt; <mark class="critic">3fff:0000:1111:2222</mark>::/64</p>
+</li>
+<li>
+<p><mark class="critic">3fff:0000:1111</mark>:2222:3333:4444:5555:6666/48 -&gt; <mark class="critic">3fff:0000:1111</mark>::/48</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Если длина префикса кратна 4, то префикс граничит по символу <code>:</code> или между 16-ичными символами.</p>
+<ul>
+<li>
+<p><mark class="critic">3fff:0000:1111:222</mark>2:3333:4444:5555:6666/60 -&gt; <mark class="critic">3fff:0000:1111:222</mark>0:0000:0000:0000:0000/60 -&gt; <mark class="critic">3fff:0000:1111:222</mark>0::/60</p>
+</li>
+<li>
+<p><mark class="critic">3fff:0000:1111:2</mark>222:3333:4444:5555:6666/52 -&gt; <mark class="critic">3fff:0000:1111:2</mark>000::/52</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Если длина префикса не кратна 4, то префикс граничит внутри 16-ичного символа. Для этого "разрезанный" символ для лучшего понимания лучше выписать в 2-ичном виде.</p>
+<p>3fff:0000:1111:2222:<span class="arithmatex">\(^{/64}\)</span>3<span class="arithmatex">\(^{/68}\)</span>333:4444:5555:6666/67</p>
+<p><mark class="critic">3fff:0000:1111:2222:<span class="arithmatex">\(^{/64}\)</span>001</mark>1<span class="arithmatex">\(^{/68}\)</span>333:4444:5555:6666/67</p>
+<p><mark class="critic">3fff:0000:1111:2222:<span class="arithmatex">\(^{/64}\)</span>001</mark>0<span class="arithmatex">\(^{/68}\)</span>000::/67</p>
+<p>3fff:0000:1111:2222:2000::/67</p>
+</li>
+</ol>
+<h3 id="ipv6-">Способы назначения IPv6-адресов</h3>
+<ul>
+<li>Вручную</li>
+<li>SLACC<ul>
+<li>Префикс выдает маршрутизатор</li>
+<li>Идентификатор интерфейса формируется с помощью EUI-64</li>
+</ul>
+</li>
+<li>DHCPv6</li>
+</ul>
+<p><strong>EUI-64</strong></p>
+<p>Идентификатор интерфейса формируется на основе его MAC-адрес.</p>
+<p>В середину MAC вставляется <code>ff:fe</code>, а потом инвертируется <strong>второй младший</strong> бит <strong>первого</strong> байта.</p>
+<p><code>11:22:33:44:55:66</code> -&gt; <code>11:22:33:<mark class="critic">ff:fe</mark>:44:55:66</code> -&gt; <code>1<mark class="critic">3</mark>:22:33:ff:fe:44:55:66</code></p>
+<p><code>11</code> -&gt; <code>00010001</code> -&gt; <code>000100<mark class="critic">1</mark>1</code> -&gt; <code>1<mark class="critic">3</mark></code></p>
+<p><strong>Недостатки</strong></p>
+<p>Адрес постоянный, можно отслеживать действия. Вместо этого способа можно включить случайную генерацию идентификатора интерфейса.</p>
+<h3 id="_6">Разделение на подсети</h3>
+<ul>
+<li>С использованием идентификатора подсети</li>
+<li>С использованием идентификатора интерфейса</li>
+</ul>
+<p><strong>С использованием идентификатора подсети</strong></p>
+<ul>
+<li>Удобный способ</li>
+<li>Большое количество подсетей - <span class="arithmatex">\(2^{16}\)</span></li>
+<li>Большое количество узлов - <span class="arithmatex">\(2^{64}\)</span></li>
+</ul>
+<div class="highlight"><pre><span></span><code>3fff:0:0:000D::/64
+3fff:0:0:000E::/64
+3fff:0:0:000F::/64
+3fff:0:0:<mark class="critic">????</mark>::/64
+...
+3fff:0:0:0999::/64
+3fff:0:0:<mark class="critic">????</mark>::/64
+</code></pre></div>
+<p><strong>С использованием идентификатора интерфейса</strong></p>
+<ul>
+<li>Принцип похож на разделение по подсети в IPv4</li>
+<li>Полубайт - удобная граница подсети</li>
+</ul>
+<h3 id="arp">ARP</h3>
+<ul>
+<li>В IPv6 его нет.</li>
+<li>Вместо него используется ICMPv6 с сообщениями типа <code>NS</code> и <code>ND</code>.</li>
+<li>У всех адресов одинаковый префикс <code>FF02::1:FF00:0/104</code>. К нему добавляются 24 младших бита адреса (unicast или anycast). В результате multicast-адрес может быть в диапазоне от <code>FF02:0:0:0:0:1:FF<mark class="critic">00:0000</mark></code> до <code>FF02:0:0:0:0:1:FF<mark class="critic">FF:FFFF</mark></code>.</li>
+</ul>
+<p>См. тему ICMP.</p>
+<h2 id="_7">Примеры</h2>
+<h3 id="1">Пример 1</h3>
+<div class="highlight"><pre><span></span><code>2000::/64
+2000:0:0:0000::/64
+
+Нужно подсетей - 8.
+
+Нужно 3 бита.
+
+0 подсеть - 2000:0:0:0000:<mark class="critic">000</mark>0 0000 0000 0000::/67
+0 подсеть - 2000:0:0:0000:<mark class="critic">0</mark>000::/67
+
+1 подсеть - 2000:0:0:0000:<mark class="critic">001</mark>0 0000 0000 0000::/67
+1 подсеть - 2000:0:0:0000:<mark class="critic">2</mark>000::/67
+
+2 подсеть - 2000:0:0:0000:<mark class="critic">010</mark>0 0000 0000 0000::/67
+2 подсеть - 2000:0:0:0000:<mark class="critic">4</mark>000::/67
+
+3 подсеть - 2000:0:0:0000:<mark class="critic">011</mark>0 0000 0000 0000::/67
+3 подсеть - 2000:0:0:0000:<mark class="critic">6</mark>000::/67
+
+4 подсеть - 2000:0:0:0000:<mark class="critic">100</mark>0 0000 0000 0000::/67
+4 подсеть - 2000:0:0:0000:<mark class="critic">8</mark>000::/67
+
+5 подсеть - 2000:0:0:0000:<mark class="critic">101</mark>0 0000 0000 0000::/67
+5 подсеть - 2000:0:0:0000:<mark class="critic">a</mark>000::/67
+
+6 подсеть - 2000:0:0:0000:<mark class="critic">110</mark>0 0000 0000 0000::/67
+6 подсеть - 2000:0:0:0000:<mark class="critic">c</mark>000::/67
+
+7 подсеть - 2000:0:0:0000:<mark class="critic">111</mark>0 0000 0000 0000::/67
+7 подсеть - 2000:0:0:0000:<mark class="critic">e</mark>000::/67
+</code></pre></div>
+<h3 id="2">Пример 2</h3>
+<div class="highlight"><pre><span></span><code>2000::/64
+2000:0:0:0000::/64
+
+Нужно подсетей - 500.
+
+Нужно 9 битов.
+
+0 подсеть - 2000:0:0:0000:0000::/73
+1 подсеть - 2000:0:0:0000:<mark class="critic">0000 0000 1</mark>000 0000::/73
+1 подсеть - 2000:0:0:0000:<mark class="critic">008</mark>0::/73
+2 подсеть - 2000:0:0:0000:<mark class="critic">0000 0001 0</mark>000 0000::/73
+2 подсеть - 2000:0:0:0000:<mark class="critic">010</mark>0::/73
+...
+300 подсеть - 2000:0:0:0000:<mark class="critic">1001 0110 0</mark>000 0000::/73
+300 подсеть - 2000:0:0:0000:<mark class="critic">960</mark>0::/73
+...
+</code></pre></div>
+<p><span class="arithmatex">\(2_{10} = 0000 0001 0_{2}\)</span></p>
+<p><span class="arithmatex">\(300_{10} = 1001 0110 0_{2}\)</span></p>
+<h3 id="3">Пример 3</h3>
+<div class="highlight"><pre><span></span><code>2000::/64
+2000:0:0:0000::/64
+
+Нужно подсетей - 2000.
+
+Нужно 11 бит.
+
+...
+10 подсеть - 2000:0:0:0000:<mark class="critic">0000 0001 010</mark>0 0000::/75
+10 подсеть - 2000:0:0:0000:0140::/75
+...
+100 подсеть - 2000:0:0:0000:<mark class="critic">0000 1100 100</mark>0 0000::/75
+100 подсеть - 2000:0:0:0000:0C80::/75
+...
+1000 подсеть - 2000:0:0:0000:<mark class="critic">0111 1101 000</mark>0 0000::/75
+1000 подсеть - 2000:0:0:0000:7D00::/75
+...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>10 подсеть - 2000:0:0:0000:0140::/75
+
+Нужно внутри этой подсети еще подсетей - 67.
+
+67 подсеть - 2000:0:0:0000:0000 0001 010<mark class="critic">1 0000:11</mark>00 0000 0000 0000::/82
+67 подсеть - 2000:0000:0000:0000:0150:C000:0000:0000/82
+67 подсеть - 2000::0150:C000:0:0/82
+
+20 подсеть - 2000:0:0:0000:0000 0001 010<mark class="critic">0 0101:00</mark>00 0000 0000 0000::/82
+20 подсеть - 2000:0:0:0000:0145:0000:0000:0000/82
+20 подсеть - 2000:0:0:0:0140::/82
+или
+20 подсеть - 2000::0140:0:0:0/82
+</code></pre></div>
+<h3 id="4-unicast-cisco">Пример 4 (unicast + Cisco)</h3>
+<p>Пример демонстрирует настройку IPv6-адресов и статической маршрутизации.</p>
+<p><img alt="img" src="static/10.png" /></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">R1</label><label for="__tabbed_1_2">R2</label><label for="__tabbed_1_3">R3</label><label for="__tabbed_1_4">R4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+ipv6 unicast-routing
+int e0/1
+ipv6 add 123::1/64
+no sh
+exit
+ipv6 route 234::/64 123::2
+ipv6 route 234::/64 123::3
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+ipv6 unicast-routing
+int e0/0
+ipv6 add 123::2/64
+no sh
+exit
+int e0/1
+ipv6 add 234::2/64
+no sh
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+ipv6 unicast-routing
+int e0/0
+ipv6 add 123::3/64
+no sh
+exit
+int e0/1
+ipv6 add 234::3/64
+no sh
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+ipv6 unicast-routing
+int e0/0
+ipv6 add 234::4/64
+no sh
+exit
+ipv6 route 123::/64 234::2
+ipv6 route 123::/64 234::3
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>На R1 и R4 были созданы 2 маршрута в одну сеть.</p>
+<p>Далее в разделе <strong>Anycast</strong> показано, как заменить два маршрута одним.</p>
+<h3 id="5-anycast-cisco">Пример 5 (anycast + Cisco)</h3>
+<p>Пример показывает, как с помощью anycast-адресов можно создавать маршруты.</p>
+<p class="annotate">Схема та же (1)</p>
+<ol>
+<li><img alt="img" src="static/10.png" /></li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">R1</label><label for="__tabbed_2_2">R2</label><label for="__tabbed_2_3">R3</label><label for="__tabbed_2_4">R4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+int e0/1
+ipv6 add 123::1/64
+no sh
+exit
+ipv6 route 234::/64 <mark class="critic">123::23</mark>
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+ipv6 unicast-routing
+int e0/0
+ipv6 add <mark class="critic">123::23</mark>/64 <mark class="critic">anycast</mark>
+no sh
+exit
+int e0/1
+ipv6 add 234::23/64 anycast
+no sh
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+ipv6 unicast-routing
+int e0/0
+ipv6 add 123::23/64 anycast
+no sh
+exit
+int e0/1
+ipv6 add 234::23/64 anycast
+no sh
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cont f
+int e0/0
+ipv6 add 234::4/64
+no sh
+exit
+ipv6 route 123::/64 234::23
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
