@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/stand/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/networks/fhrp/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/networks/router/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/networks/static-routing/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/networks/subnets/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/networks/switch/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://iiyapopov.github.io/study.netlab/networks/vpcs/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+</urlset>

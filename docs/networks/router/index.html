@@ -1,0 +1,834 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/router/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Маршрутизатор - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Маршрутизатор
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Теоретические сведения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Теоретические сведения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Что такое маршрутизатор и зачем он нужен
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схема
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шлюз в сети
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка ПК
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка маршрутизатора
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Настройка маршрутизатора">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cisco
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mikrotik" class="md-nav__link">
+    <span class="md-ellipsis">
+      MikroTik
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debian-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian-подобный linux
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проверка настроек
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Самостоятельная работа
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤔 Контрольные вопросы
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Маршрутизатор</h1>
+
+<h2 id="_1">Теоретические сведения</h2>
+<h3 id="_2">Что такое маршрутизатор и зачем он нужен</h3>
+<p>Устройство, которое:</p>
+<ul>
+<li>разделяет конечные устройства на логические группы (например, ПК для пользователей и серверы),</li>
+<li>занимается поиском и распространением маршрутов, чтобы корректно и быстро доставлять сетевой трафик.</li>
+</ul>
+<p>Это базовые задачи. Также существуют другие задачи, но в данной статье они не рассматриваются.</p>
+<h3 id="_3">Схема</h3>
+<p>Далее будет рассматриваться настройка следующей сети. Это одна и та же сеть, только предаставленна разная информация на ней.</p>
+<p>На этой показано, как соединены устройства:</p>
+<pre class="mermaid"><code>flowchart LR
+    R((Router))
+
+    PC1 o--o S1 o--o R
+    PC2 o--o S1
+
+    R o--o S2 o--o PC3
+    S2 o--o PC4</code></pre>
+<p>На этой показано, к каким сетям подключены устройства и какие адреса у них:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Router
+        R.int1[int1&lt;br&gt;.254]
+        R.int2[int2&lt;br&gt;.254]
+    end
+
+    subgraph PC1
+        PC1.int[int&lt;br&gt;.1]
+    end
+
+    subgraph PC2
+        PC2.int[int&lt;br&gt;.2]
+    end
+
+    subgraph PC3
+        PC3.int[int&lt;br&gt;.1]
+    end
+
+    subgraph PC4
+        PC4.int[int&lt;br&gt;.2]
+    end
+
+    Net1{{192.168.0.0/24}}
+    Net2{{192.168.1.0/24}}
+
+    PC1.int o--o Net1 o--o R.int1
+    PC2.int o--o Net1
+
+    R.int2 o--o Net2 o--o PC3.int
+    Net2 o--o PC4.int</code></pre>
+<p><code>int</code> - это название интерфейса, которое зависит от устройства.</p>
+<p>В месте обозначения сети в реальности находится коммутатор. На данной схеме обозначение коммутатора не несет смысла, т.к. коммутатору не выдается адрес.</p>
+<h3 id="_4">Шлюз в сети</h3>
+<p>Это устройство, которому необходимо отдать трафик, т.к. оно лучше "знает", что делать с этим трафиком дальше.</p>
+<p>Для конечных устройств шлюзом обычно является их "ближайший" маршрутизатор.</p>
+<p>У маршрутизатора тоже может быть шлюз - другой маршрутизатор. Такая схема будет рассмотрена позже.</p>
+<h3 id="_5">Настройка ПК</h3>
+<p>В данном примере после IP-адреса и маски также необходимо указать адрес шлюза. Если его не указать, то доступны между собой будут только PC1 и PC2, а также PC3 и PC4. Например, PC1 не сможет "пинговать" PC4, т.к. он не будет знать, как до него добраться.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PC1</label><label for="__tabbed_1_2">PC2</label><label for="__tabbed_1_3">PC3</label><label for="__tabbed_1_4">PC4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 192.168.0.1/24 <mark class="critic">192.168.0.254</mark>
+save
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 192.168.0.2/24 192.168.0.254
+save
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 192.168.1.1/24 192.168.0.254
+save
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 192.168.1.2/24 192.168.0.254
+save
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="_6">Настройка маршрутизатора</h3>
+<h4 id="cisco">Cisco</h4>
+<div class="highlight"><pre><span></span><code>conf t
+int e0/0
+ip address 192.168.0.254 255.255.255.0
+no sh
+end
+wr mem
+</code></pre></div>
+<ul>
+<li><code>cont t</code> - войти в режим конфигурации (сокращенная команда),</li>
+<li><code>int e0/0</code> - войти в режим настройки интерфейса,</li>
+<li><code>ip address 192.168.0.254 255.255.255.0</code> - задать адрес на интерфейсе,</li>
+<li><code>no sh</code> - включить интерфейс, т.к. по умолчанию он выключен (сокращенная команда),</li>
+<li><code>end</code> - выйти из режима конфигурации,</li>
+<li><code>wr mem</code> - сохранить конфигурацию (сокращенная команда).</li>
+</ul>
+<h4 id="mikrotik">MikroTik</h4>
+<p>Логин - <code>admin</code>, пароль - <code>&lt;пусто&gt;</code>.</p>
+<div class="highlight"><pre><span></span><code>ip address add interface=ether1 address 192.168.0.254/24
+ip address add interface=ether2 address 192.168.1.254/24
+</code></pre></div>
+<h4 id="debian-linux">Debian-подобный linux</h4>
+<p>В качестве маршрутизатора можно использовать linux.</p>
+<p>Есть несколько вариантов задания адреса на интерфейсе, но сначала нужно активировать возможность пересылки пакетов между интерфейсами.</p>
+<p><strong>Включение маршрутизации</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">/etc/sysctl.conf</label><label for="__tabbed_2_2">cmd</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code># добавить строку
+net.ipv4.ip_forward = 1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>echo `net.ipv4.ip_forward = 1` &gt;&gt; /etc/sysctl.conf
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Применить настройки командой <code>sysctl -p</code>.</p>
+<p><strong>iproute2</strong></p>
+<p>Простой способ задания адреса, но нужно наличие пакета <code>iproute2</code> (<code>apt install iproute2</code>), который обычно уже установлен.</p>
+<p><code>ip a</code> - посмотреть информацию на интерфейсах, а так же их названия.</p>
+<p>Добавить адрес</p>
+<div class="highlight"><pre><span></span><code>ip addr add 192.168.0.254/24 dev ens1
+ip addr add 192.168.0.254/24 dev ens2
+</code></pre></div>
+<p>где <code>ensX</code> - название интерфейса, которое можно посмотреть с помощью <code>ip a</code>.</p>
+<p>Удалить адрес</p>
+<div class="highlight"><pre><span></span><code>ip addr <mark class="critic">del</mark> 192.168.0.254/24 dev ens1
+</code></pre></div>
+<p>После перезагрузки адреса сбросятся.</p>
+<p><strong>ifupdown</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">/etc/network/interfaces</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>auto ens1
+iface ens1 inet static
+    address 192.168.0.254/24
+
+auto ens2
+iface ens2 inet static
+    address 192.168.1.254/24
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Применить настройки <code>ifup ensX</code> (или сначала <code>ifdown ensX</code>). Другой вариант - <code>systemctl restart networking</code>.</p>
+<p><strong>NetworkManager</strong></p>
+<p>Данный вариант часто можно встретить на linux с GUI, где адрес клиента часто меняется.</p>
+<ul>
+<li><code>nmtui</code> - графическая утилита</li>
+<li><code>nmcli</code> - консольная утилита с псевдографическим интерфейсом</li>
+</ul>
+<p>См. <a href="https://wiki.debian.org/NetworkManager">документацию</a></p>
+<p><strong>systemd-networkd</strong></p>
+<p>Данный вариант может использоваться, если адреса не изменяются на интерфейсах.</p>
+<p>Требует редактирование нескольких файлов. Это не сложно, но менее очевидно без знаний документации.</p>
+<p>См. <a href="https://wiki.debian.org/SystemdNetworkd">документацию</a></p>
+<h3 id="_7">Проверка настроек</h3>
+<p>С помощью <code>ping</code> можно проверить доступность устройств, находящихся в разных сетях.</p>
+<h2 id="_8">🧠 Самостоятельная работа</h2>
+<p>Настроить следующую схему:</p>
+<pre class="mermaid"><code>flowchart BT
+    Net1{{192.168.x.0/24}}
+    Net2{{192.168.x+1.0/24}}
+    Net3{{192.168.x+2.0/24}}
+
+    PC1 o--o Net1 o--o R
+    PC2 o--o Net1
+
+    PC3 o--o Net2 o--o R
+    PC4 o--o Net2
+
+    PC5 o--o Net3 o--o R
+    PC6 o--o Net3</code></pre>
+<h2 id="_9">🤔 Контрольные вопросы</h2>
+<ol>
+<li>Зачем нужен маршрутизатор?</li>
+<li>Зачем нужен шлюз в сети?</li>
+<li>Можно ли задать на разных интерфейсах маршрутизатора адреса из одной сети?</li>
+</ol>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

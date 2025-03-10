@@ -1,0 +1,817 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/static-routing/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Статическая маршрутизация - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Статическая маршрутизация
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Зачем нужна маршрутизация
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Виды маршрутизации
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица маршрутизации (ТМ)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Таблица маршрутизации (ТМ)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Заполнение таблицы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Метрика маршрута
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Административная дистанция (АД)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршрут по умолчанию
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Пример">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cisco
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cisco">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант "в лоб"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Использование маршрута по умолчанию
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Суммарный маршрут
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Статическая маршрутизация</h1>
+
+<h2 id="_1">Зачем нужна маршрутизация</h2>
+<p>Для передачи сетевых пакетов необходимо знать, куда отправить его дальше. Также путей доставки может быть несколько, поэтому маршрутизатор определяет наилучшие пути до получателя.</p>
+<p><strong>Маршруты</strong> - пути передачи пакетов.</p>
+<p><strong>Таблица маршрутизации</strong> - место, где хранятся лучшие маршруты до сетей назначения.</p>
+<p>В качестве маршрутизатора могут быть отдельные устройства, linux компьютер/сервер и т.п.</p>
+<h2 id="_2">Виды маршрутизации</h2>
+<ul>
+<li>Статическая</li>
+<li>Динамическая</li>
+</ul>
+<p>В данной статье рассматривается только статическая маршрутизация.</p>
+<h2 id="_3">Таблица маршрутизации (ТМ)</h2>
+<p>Каждый маршрут в таблице состоит из:</p>
+<ul>
+<li>адрес и маска сети назначения,</li>
+<li>адрес шлюза (gateway), если это не напрямую подключенная сеть (directly connected),</li>
+<li>административная дситанция/метрика,</li>
+<li>выходящий интерфейс.</li>
+</ul>
+<h3 id="_4">Заполнение таблицы</h3>
+<p>Таблица заполняется вручную или процессами специальных протоколов. Далее рассматривается ручное заполнение.</p>
+<h3 id="_5">Метрика маршрута</h3>
+<ul>
+<li>Это стоимость маршрута,</li>
+<li>Может быть изменена, но обычно задается автоматически и не изменяется,</li>
+<li>Чем меньше значение стоимости, тем предпочтительнее маршрут.</li>
+</ul>
+<h3 id="_6">Административная дистанция (АД)</h3>
+<ul>
+<li>Это "степень доверия" к маршруту,</li>
+<li>Чем меньше значение, тем предпочтительнее маршрут,</li>
+<li>Напрямую подключенная сеть имеет наименьшее значение - 0,</li>
+<li>Статический маршрут - следующий по "степень доверия" - 1,</li>
+<li>Протоколы динамической маршрутизаиции имеют свои значения, поэтому маршруты некоторых протоколов являются более предпочтительными,</li>
+<li>Если есть 2 маршрута в одну сеть (статический и динамический), то будет выбран статический, т.к. у него АД будет меньше.</li>
+</ul>
+<h2 id="_7">Маршрут по умолчанию</h2>
+<p>Это такой маршрут, куда нужно отправлять пакет в случае, когда устройство не знает никакой информации о сети назначения.</p>
+<h2 id="_8">Пример</h2>
+<p><img alt="scheme" src="static/scheme.png" /></p>
+<p><strong>⚠️ Задание IP-адресов не рассматривается, см. более ранние статьи.</strong> Чтобы ПК мог "пинговать" устройства из других сетей, нужно задать ему шлюз.</p>
+<h3 id="cisco">Cisco</h3>
+<h4 id="_9">Вариант "в лоб"</h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">R1</label><label for="__tabbed_1_2">R2</label><label for="__tabbed_1_3">R3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+ip route 10.23.0.0 255.255.255.0 10.12.0.2
+ip route 10.3.0.0 255.255.255.0 10.12.0.2
+ip route 10.2.0.0 255.255.255.0 10.12.0.2
+ip route 10.2.1.0 255.255.255.0 10.12.0.2
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+ip route 10.1.0.0 255.255.255.0 10.12.0.1
+ip route 10.3.0.0 255.255.255.0 10.23.0.3
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+ip route 10.1.0.0 255.255.255.0 10.23.0.2
+ip route 10.12.0.0 255.255.255.0 10.23.0.2
+ip route 10.2.0.0 255.255.255.0 10.23.0.2
+ip route 10.2.1.0 255.255.255.0 10.23.0.2
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><code>sh ip route</code> - отобразить ТМ.</p>
+<h4 id="_10">Использование маршрута по умолчанию</h4>
+<p>Также в данном случае возможен вариант использования маршрута по умолчанию (<code>0.0.0.0/0</code>), т.к. у нескольких маршрутов одинаковые шлюзы по умолчанию.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">R1</label><label for="__tabbed_2_2">⚠️ R2</label><label for="__tabbed_2_3">R3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+ip route 0.0.0.0 0.0.0.0 10.12.0.2
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+ip route 10.1.0.0 255.255.255.0 10.12.0.1
+ip route 10.3.0.0 255.255.255.0 10.23.0.3
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+ip route 0.0.0.0 0.0.0.0 10.23.0.2
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Для ⚠️ R2 маршрут по умолчанию создавать не целесообразно, т.к. все статическе маршруты ведут в разные стороны.</p>
+<h4 id="_11">Суммарный маршрут</h4>
+<p>Т.к. некоторые маршруты похожи друг на друга, и они ведут через один шлюз, то их можно объединять.</p>
+<p>На R1 есть следующие маршруты, и возможен такой вариант их суммирования:</p>
+<div class="highlight"><pre><span></span><code>10.23.0.0: <mark class="critic">10.000</mark>10111.00000000.0
+10.3.0.0:  <mark class="critic">10.000</mark>00011.00000000.0
+10.2.0.0:  <mark class="critic">10.000</mark>00010.00000000.0
+10.2.1.0:  <mark class="critic">10.000</mark>00010.00000001.0
+</code></pre></div>
+<p>Итоговый маршрут: <code>10.0.0.0/11</code>, т.к. только выделенная часть является общей для всех из них.</p>
+<p>Возможен также такой вариант:</p>
+<div class="highlight"><pre><span></span><code>10.23.0.0: 10.00010111.00000000.0
+10.3.0.0:  <mark class="critic">10.0000001</mark>1.00000000.0
+10.2.0.0:  <mark class="critic">10.0000001</mark>0.00000000.0
+10.2.1.0:  <mark class="critic">10.0000001</mark>0.00000001.0
+</code></pre></div>
+<p>В итоге будет 2 маршрута с одинаковым шлюзом: <code>10.23.0.0/24</code> и <code>10.2.0.0/15</code>.</p>
+<p>Еще вариант:</p>
+<div class="highlight"><pre><span></span><code>10.23.0.0: 10.00010111.00000000.0
+10.3.0.0:  10.00000011.00000000.0
+10.2.0.0:  <mark class="critic">10.00000010.0000000</mark>0.0
+10.2.1.0:  <mark class="critic">10.00000010.0000000</mark>1.0
+</code></pre></div>
+<p>В итоге будет 3 маршрута с одинаковым шлюзом: <code>10.23.0.0/24</code>, <code>10.3.0.0/24</code> и <code>10.2.0.0/23</code>.</p>
+<p><strong>Аналогично суммарные маршруты вычисляются на остальных маршрутизаторах.</strong></p>
+<h3 id="linux">Linux</h3>
+<p>Включить <code>ip_forward</code> (см. документацию или другую статью).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">R1</label><label for="__tabbed_3_2">R2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip route add 30.0.0.0/24 via 20.0.0.2
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip route add 10.0.0.0/24 via 20.0.0.1
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Либо вариант через маршрут по умолчанию</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">R1</label><label for="__tabbed_4_2">R2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip route add default via 20.0.0.2
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip route add default via 20.0.0.1
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><code>ip route</code> - отобразить ТМ.</p>
+<p>После перезагрузки маршруты пропадут. Чтобы они сохранились, нужно добавить маршрут, например, через файл <code>/etc/network/interfaces</code> (см. документацию).</p>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1008 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/vpcs/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Первая схема в GNS3 - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vpcs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Первая схема в GNS3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Что такое VPCS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание схемы
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Подключение к устройству
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Программа-терминал (консоль)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Доступные команды
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Связь между устройствами
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Необязательные параметры
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Служебные адреса
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка IP-адреса
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проверка доступности устройств
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Сохранение конфигурации
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Просмотр сетевого трафика
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Видеодемонстрация
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Самостоятельная работа
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Самостоятельная работа">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Условия
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Первая схема в GNS3</h1>
+
+<p><strong>🎯 Цель:</strong> научиться базовому взаимодействию со схемой и устройствами и выполнять базовую настройку устройств типа VPCS.</p>
+<h2 id="vpcs">Что такое VPCS?</h2>
+<p>Это устройство в GNS3, которое имитирует компьютер. Совсем не требовательный к ресурсам сервера. Обладает лишь <strong>небольшим</strong> функционалом, достаточным для начала изучения компьютерных сетей:</p>
+<ul>
+<li>Задать IP-адрес (статически, динамически)</li>
+<li>Проверить доступность устройств</li>
+</ul>
+<p><a href="https://docs.gns3.com/docs/emulators/vpcs/">Подробнее...</a></p>
+<h2 id="_1">Создание схемы</h2>
+<p>Схема создается перетаскиванием иконок устройств на рабочее пространство.</p>
+<p><img alt="Создание схемы" src="static/vpcs.gif" /></p>
+<h2 id="_2">Подключение к устройству</h2>
+<p><img alt="Подключение к устройству" src="static/connect-to-vpcs.gif" /></p>
+<p>После первого подключения к устройству обычно появляется приветственная фраза и прочая информация.</p>
+<div class="highlight"><pre><span></span><code>Welcome to Virtual PC Simulator, version 0.8.3
+Dedicated to Daling.
+Build time: Sep  9 2023 11:15:00
+Copyright (c) 2007-2015, Paul Meng (mirnshi@gmail.com)
+All rights reserved.
+
+VPCS is free software, distributed under the terms of the &quot;BSD&quot; licence.
+Source code and license can be found at vpcs.sf.net.
+For more information, please visit wiki.freecode.com.cn.
+
+Press &#39;?&#39; to get help.
+
+Executing the startup file
+
+
+PC1&gt;
+</code></pre></div>
+<h2 id="-">Программа-терминал (консоль)</h2>
+<p>Для управления устройствами существуют различные программы, например:</p>
+<ul>
+<li><a href="https://www.putty.org/">PuTTY</a>. Пожалуй, одна из самых популярных программ. Не удобен тем, что не поддерживает вкладки, т.е. терминалы открываются в отдельных окнах, а это совсем не удобно даже при небольшом количестве устройств.</li>
+<li><a href="https://www.netsarang.com/ru/xshell/">Xshell</a>. Поддерживает вкладки, но могут быть сложности со скачиванием.</li>
+<li><a href="https://help.ubuntu.ru/wiki/gnome_terminal">GNOME Terminal</a>. Для Linux, поддерживает вкладки.</li>
+<li>Встроенная в ОС консоль и telnet-клиент. Для новичков это <strong>менее дружелюбный</strong> вариант.</li>
+<li>Прочие аналоги.</li>
+</ul>
+<h2 id="_3">Доступные команды</h2>
+<p>В приветственной фразе нам подсказывают <code>Press '?' to get help</code>.</p>
+<p>Если ввести в качестве команды символ <code>?</code>, то на экране отобразится справка по доступным командам.</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; ?
+
+?                        Print help
+arp                      Shortcut for: show arp. Show arp table
+clear ARG                Clear IPv4/IPv6, arp/neighbor cache, command history
+dhcp [OPTION]            Shortcut for: ip dhcp. Get IPv4 address via DHCP
+disconnect               Exit the telnet session (daemon mode)
+echo TEXT                Display TEXT in output. See also  set echo ?
+help                     Print help
+history                  Shortcut for: show history. List the command history
+ip ARG ... [OPTION]      Configure the current VPC&#39;s IP settings. See ip ?
+load [FILENAME]          Load the configuration/script from the file FILENAME
+ping HOST [OPTION ...]   Ping HOST with ICMP (default) or TCP/UDP. See ping ?
+quit                     Quit program
+relay ARG ...            Configure packet relay between UDP ports. See relay ?
+rlogin [ip] port         Telnet to port on host at ip (relative to host PC)
+save [FILENAME]          Save the configuration to the file FILENAME
+set ARG ...              Set VPC name and other options. Try set ?
+show [ARG ...]           Print the information of VPCs (default). See show ?
+sleep [seconds] [TEXT]   Print TEXT and pause running script for seconds
+trace HOST [OPTION ...]  Print the path packets take to network HOST
+version                  Shortcut for: show version
+
+To get command syntax help, please enter &#39;?&#39; as an argument of the command.
+
+PC1&gt;
+</code></pre></div>
+<blockquote>
+<p>Не все из представленных команд используются часто</p>
+</blockquote>
+<p>На обоих устройствах результат будет одинаковый. Выполнять данную команду <strong>не обязательно</strong>. Она нужна в случае, если вы не знаете синтаксис команды.</p>
+<details class="tip">
+<summary>Не забывайте использовать <code>?</code> или <code>-h</code> и <code>Tab</code></summary>
+<ol>
+<li>В каждой ОС должна быть справка по командам. В начале обучения команды будет запоминать сложно, но со временем они будут запоминаться. <code>?</code> или <code>-h</code> использовать - зависит от устройства и его ОС. Возможен другой вариант.</li>
+<li>С помощью <code>Tab</code> можно дополнять вводимую команду, когда требуется полный ввод команды. Иногда команды можно не вводить полностью (например, в Cisco), что несколько ускоряет настройку, но при условии, что вы хорошо знаете синтаксис.</li>
+</ol>
+<p>Например, команду <code>show ip</code> моржно написать как <code>sh ip</code>. В команде любые слова можно сокращать, если ее можно однозначно интерпретировать.</p>
+</details>
+<h2 id="_4">Связь между устройствами</h2>
+<p>Для связи между собой устройства используют MAC-адреса и IP-адреса:</p>
+<ul>
+<li>MAC-адреса обычно уже заданы на каждом устройстве производителем. Его можно поменять, но смысла в этом мало.</li>
+<li>IP-адреса обычно задаются вручную или автоматически со специального сервера. Т.к. на схеме такого сервера нет, то нужно задать их вручную.</li>
+</ul>
+<p>Чтобы убедиться, что на устройствах нет IP-адреса, необходимо воспользоваться командой <code>show</code>. У большинства команд есть подкоманды. Чтобы посмотреть детальную справку по конкретной команде, необходимо также воспользоваться символом <code>?</code>, введя его после интересующей команды, разделив <code>пробелом</code>.</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; show ?
+
+show [ARG]
+  Show information for ARG
+    ARG:
+       arp                Show arp table
+       dump               Show dump flags 
+       echo               Show the status of the echo flag. See set echo ?
+       history            List the command history
+       ip [all]           Show IPv4 details
+                          Shows VPC Name, IP address, mask, gateway, DNS, MAC, 
+                          lport, rhost:rport and MTU
+       ipv6 [all]         Show IPv6 details
+                          Shows VPC Name, IPv6 addresses/mask, gateway, MAC,
+                          lport, rhost:rport and MTU
+       version            Show the version information
+
+  Notes: 
+  1. If no parameter is given, the key information of the current VPC will be
+     displayed
+  2. If &#39;all&#39; parameter is given for ip/ipv6 a reduced view in tablular
+     format will be displayed.
+
+PC1&gt;
+</code></pre></div>
+<p>В справке указано, что можно посмотреть детальную информацию об IP.</p>
+<h2 id="_5">Необязательные параметры</h2>
+<p>В справке некоторые команды окружены квадратными скобками <code>[какая-то команда]</code>. Эти скобки означают, что все, что внутри них, является не обязательным параметром (т.е можно указать, а можно не указывать), при этом результатирующий вывод может отличаться большей или меньшей информативностью.</p>
+<p>В данном случае достаточно ввести команду <code>show ip</code>.</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; show ip
+
+NAME        : PC1[1]
+<mark class="critic">IP/MASK     : 0.0.0.0/0</mark>
+GATEWAY     : 0.0.0.0
+DNS         : 
+<mark class="critic">MAC         : 00:50:79:66:68:00</mark>
+LPORT       : 20002
+RHOST:PORT  : 127.0.0.1:20003
+MTU         : 1500
+
+PC1&gt;
+</code></pre></div>
+<p>В результате выполнения команды видно, что MAC-адрес задан, а IP-адрес и маска сети отсутствуют. Нулевой IP-адрес считается некорректным для устройства, поэтому его нужно задать.</p>
+<p>В справке есть команда <code>ip</code>, которая поможет задать IP-адрес на устройстве.</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; ip ?
+
+ip ARG ... [OPTION]
+  Configure the current VPC&#39;s IP settings
+    ARG ...:
+    <mark class="critic">address [mask] [gateway]</mark>
+    address [gateway] [mask]
+                   Set the VPC&#39;s ip, default gateway ip and network mask
+                   Default IPv4 mask is /24, IPv6 is /64. Example:
+                   ip 10.1.1.70/26 10.1.1.65 set the VPC&#39;s ip to 10.1.1.70,
+                   the gateway to 10.1.1.65, the netmask to 255.255.255.192.
+                   In tap mode, the ip of the tapx is the maximum host ID
+                   of the subnet. In the example above the tapx ip would be 
+                   10.1.1.126
+                   mask may be written as /26, 26 or 255.255.255.192
+    auto           Attempt to obtain IPv6 address, mask and gateway using SLAAC
+    dhcp [OPTION]  Attempt to obtain IPv4 address, mask, gateway, DNS via DHCP
+          -d         Show DHCP packet decode
+          -r         Renew DHCP lease
+          -x         Release DHCP lease
+    dns ip         Set DNS server ip, delete if ip is &#39;0&#39;
+    dns6 ipv6      Set DNS server ipv6, delete if ipv6 is &#39;0&#39;
+    domain NAME    Set local domain name to NAME
+
+PC1&gt;
+</code></pre></div>
+<p>Ее синтаксис позволяет настроить IP-адрес несколькими способами.</p>
+<h2 id="_6">Служебные адреса</h2>
+<p>Адреса можно задавать произвольные, но обычно исключением являются <strong>первый</strong> и <strong>последний</strong> адреса конкретной подсети, т.к. они являются служебными.</p>
+<p>Так, например, в сети <code>10.0.0.0/24</code> обчыно нельзя использовать адреса <code>10.0.0.0</code> и <code>10.0.0.255</code>.</p>
+<p>На PC1 зададим второй по счету адрес, а на PC2 - предпоследний.</p>
+<h2 id="ip-">Настройка IP-адреса</h2>
+<p>Чтобы задать IP-адрес, воспользуемся строчкой <code>address [mask] [gateway]</code>, которую необходимо написать после ключевого слова <code>ip</code>.</p>
+<ul>
+<li><strong>address</strong> - IP-адрес, который необходимо задать</li>
+<li>
+<p><strong>mask</strong> - маска сети (необязательный параметр, судя по синтаксису). В данном случае может быть указана как обычное число (длина маски) через символ <code>/</code>, так и в формате IP-адреса. <strong>Первый вариант по мнению автора более удобный.</strong> Если не указать маску, то будет выбрана маска по умолчанию. Даже если она совпадает с той, что выбрана вами, лучше все равно явно указать.</p>
+</li>
+<li>
+<p><strong>gateway</strong> - параметр, который мы не рассматривали, можно опустить.</p>
+</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+    PC1 o--o Net{{10.0.0.0/24}} o--o PC2</code></pre>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PC1</label><label for="__tabbed_1_2">PC2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PC1&gt; ip 10.0.0.1/24
+Checking for duplicate address...
+PC1 : 10.0.0.1 255.255.255.0
+
+PC1&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PC2&gt; ip 10.0.0.254/24
+Checking for duplicate address...
+PC2 : 10.0.0.254 255.255.255.0
+
+PC2&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Теперь можно проверить, что адреса заданы успешно.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">PC1</label><label for="__tabbed_2_2">PC2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PC1&gt; sh ip
+
+NAME        : PC1[1]
+IP/MASK     : <mark class="critic">10.0.0.1/24</mark>
+GATEWAY     : 0.0.0.0
+DNS         : 
+MAC         : 00:50:79:66:68:00
+LPORT       : 20002
+RHOST:PORT  : 127.0.0.1:20003
+MTU         : 1500
+
+PC1&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PC2&gt; sh ip
+
+NAME        : PC2[1]
+IP/MASK     : <mark class="critic">10.0.0.254/24</mark>
+GATEWAY     : 0.0.0.0
+DNS         : 
+MAC         : 00:50:79:66:68:01
+LPORT       : 20004
+RHOST:PORT  : 127.0.0.1:20005
+MTU         : 1500
+
+PC2&gt; 
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="_7">Проверка доступности устройств</h2>
+<p>После того, как адреса заданы, можно проверить доступность устройств. Для этого обычно используют команду <code>ping</code>. Выполнять ее можно на любом устройстве, где она присутствует. Синтаксис команды следующий</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; ping ?      
+
+ping HOST [OPTION ...]
+  Ping the network HOST. HOST can be an ip address or name
+    Options:
+     -1             ICMP mode, default
+     -2             UDP mode
+     -3             TCP mode
+     -c count       Packet count, default 5
+     -D             Set the Don&#39;t Fragment bit
+     -f FLAG        Tcp header FLAG |C|E|U|A|P|R|S|F|
+                               bits |7 6 5 4 3 2 1 0|
+     -i ms          Wait ms milliseconds between sending each packet
+     -l size        Data size
+     -P protocol    Use IP protocol in ping packets
+                      1 - ICMP (default), 17 - UDP, 6 - TCP
+     -p port        Destination port
+     -s port        Source port
+     -T ttl         Set ttl, default 64
+     -t             Send packets until interrupted by Ctrl+C
+     -w ms          Wait ms milliseconds to receive the response
+
+  Notes: 1. Using names requires DNS to be set.
+         2. Use Ctrl+C to stop the command.
+
+PC1&gt;
+</code></pre></div>
+<blockquote>
+<p>Параметров относительно много.</p>
+</blockquote>
+<p>Пока что интересует только параметр <code>HOST</code> - IP-адрес или доменное имя устройства. Доменные имена здесь не рассматриваются, поэтому будут указываваться IP-адреса. Указывать нужно IP-адрес того устройства, чью доступность с текущего устройства нужно проверить.</p>
+<p>Команда ниже выполняется на устройстве PC1, поэтому указать необходимо IP-адрес PC2, т.е. будет проверена доступеность PC2 с PC1.</p>
+<p>Ранее уже был задан на PC2 адрес - <code>10.0.0.254</code>.</p>
+<details class="success">
+<summary>PC2 доступен с PC1</summary>
+<p>Если результат выше похож на этот (время отличаться может):</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; ping 10.0.0.254
+
+84 bytes from 10.0.0.254 icmp_seq=1 ttl=64 time=0.327 ms
+84 bytes from 10.0.0.254 icmp_seq=2 ttl=64 time=0.228 ms
+84 bytes from 10.0.0.254 icmp_seq=3 ttl=64 time=0.222 ms
+84 bytes from 10.0.0.254 icmp_seq=4 ttl=64 time=0.254 ms
+84 bytes from 10.0.0.254 icmp_seq=5 ttl=64 time=0.402 ms
+
+PC1&gt;
+</code></pre></div>
+<p>то сделано все правильно. Подобный результат показывает, что устройство доступно.
+Часто можно услышать, что в таком случае говорят "устройство <strong>пингуется</strong>".</p>
+</details>
+<details class="failure">
+<summary>PC2 <strong>НЕ</strong> доступен с PC1</summary>
+<p>Если результат похож на этот:</p>
+<div class="highlight"><pre><span></span><code>PC1&gt; ping 10.0.0.254
+
+host (10.0.0.254) not reachable
+
+PC1&gt;
+</code></pre></div>
+<p>то, значит, где-то была ошибка, и стоит начать все с начала или попробовать найти ошибку. Если перезагрузить устройство (выбрав <code>Reload</code> в контекстном меню), то все несохраненные настройки будут сброшены.</p>
+</details>
+<h2 id="_8">Сохранение конфигурации</h2>
+<p>Как только была проверена работоспособность конфигурации, ее можно (а даже нужно) сохранить, чтобы после перезагрузки устройства, настройки не сбросились, и все команды не пришлось заново вводить.</p>
+<p>На разных устройствах команда выглядит по-разному.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">PC1</label><label for="__tabbed_3_2">PC2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PC1&gt; save
+Saving startup configuration to startup.vpc
+.  done
+
+PC1&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PC2&gt; save
+Saving startup configuration to startup.vpc
+.  done
+
+PC2&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Чтобы убедиться, что все сохранилось, можно перезагрузить схему полностью, открыть консоль любого ПК, ввести команду <code>ip</code> и посмотреть, отображается ли ранее назначенный IP-адрес.</p>
+<h2 id="_9">Просмотр сетевого трафика</h2>
+<p>Для этого можно использовать <strong>Wireshark</strong>.</p>
+<p><img alt="Запуск Wireshark" src="static/wireshark.gif" /></p>
+<h2 id="_10">Видеодемонстрация</h2>
+<video controls>
+    <source src="static/demo.mp4" type="video/mp4">
+</video>
+
+<h2 id="_11">🧠 Самостоятельная работа</h2>
+<h3 id="_12">Условия</h3>
+<ol>
+<li>Сеть - <code>10.0.x.0/25</code>, где <code>x</code> - ваш номер варианта.</li>
+<li>Используйте эту же схему</li>
+<li>На PC1 должен быть назначен <strong>первый</strong> доступный адрес из сети</li>
+<li>На PC2 должен быть назначен <strong>последний</strong> доступный адрес из сети</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Не забывайте про существование специальных (зарезервированных) адресов.</p>
+</div>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
