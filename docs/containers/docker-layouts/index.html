@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/static-routing/">
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/containers/docker-layouts/">
       
       
+        <link rel="prev" href="../../stand/">
+      
+      
+        <link rel="next" href="../../security/idps/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Статическая маршрутизация - study.netlab</title>
+        <title>Слои образов в Docker - study.netlab</title>
       
     
     
@@ -104,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Статическая маршрутизация
+              Слои образов в Docker
             
           </span>
         </div>
@@ -275,7 +279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vpcs/" class="md-nav__link">
+      <a href="../../networks/vpcs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -297,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../switch/" class="md-nav__link">
+      <a href="../../networks/switch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -319,7 +323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../router/" class="md-nav__link">
+      <a href="../../networks/router/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -341,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../subnets/" class="md-nav__link">
+      <a href="../../networks/subnets/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -363,7 +367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./" class="md-nav__link">
+      <a href="../../networks/static-routing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -385,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fhrp/" class="md-nav__link">
+      <a href="../../networks/fhrp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -407,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ipv6/" class="md-nav__link">
+      <a href="../../networks/ipv6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -429,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bgp/" class="md-nav__link">
+      <a href="../../networks/bgp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,17 +459,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -480,7 +486,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             🐋 Контейнеризация
@@ -494,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../containers/linux-namespaces/" class="md-nav__link">
+      <a href="../linux-namespaces/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -513,10 +519,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../containers/docker-layouts/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Слои образов в Docker
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -526,6 +551,75 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Аналогия слоев
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Аналогия слоев">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Многослойный торт
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Палитра цветов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Программирование
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основные особенности слоев
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -652,135 +746,51 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Зачем нужна маршрутизация
+      Аналогия слоев
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Аналогия слоев">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Виды маршрутизации
+      Многослойный торт
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Таблица маршрутизации (ТМ)
+      Палитра цветов
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Таблица маршрутизации (ТМ)">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Заполнение таблицы
+      Программирование
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Метрика маршрута
+      Основные особенности слоев
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      Административная дистанция (АД)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      Маршрут по умолчанию
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      Пример
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Пример">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cisco" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cisco
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Cisco">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      Вариант "в лоб"
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      Использование маршрута по умолчанию
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      Суммарный маршрут
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linux
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -800,185 +810,77 @@
 
 
 
-  <h1>Статическая маршрутизация</h1>
+  <h1>Слои образов в Docker</h1>
 
-<h2 id="_1">Зачем нужна маршрутизация</h2>
-<p>Для передачи сетевых пакетов необходимо знать, куда отправить его дальше. Также путей доставки может быть несколько, поэтому маршрутизатор определяет наилучшие пути до получателя.</p>
-<p><strong>Маршруты</strong> - пути передачи пакетов.</p>
-<p><strong>Таблица маршрутизации</strong> - место, где хранятся лучшие маршруты до сетей назначения.</p>
-<p>В качестве маршрутизатора могут быть отдельные устройства, linux компьютер/сервер и т.п.</p>
-<h2 id="_2">Виды маршрутизации</h2>
-<ul>
-<li>Статическая</li>
-<li>Динамическая</li>
-</ul>
-<p>В данной статье рассматривается только статическая маршрутизация.</p>
-<h2 id="_3">Таблица маршрутизации (ТМ)</h2>
-<p>Каждый маршрут в таблице состоит из:</p>
-<ul>
-<li>адрес и маска сети назначения,</li>
-<li>адрес шлюза (gateway), если это не напрямую подключенная сеть (directly connected),</li>
-<li>административная дситанция/метрика,</li>
-<li>выходящий интерфейс.</li>
-</ul>
-<h3 id="_4">Заполнение таблицы</h3>
-<p>Таблица заполняется вручную или процессами специальных протоколов. Далее рассматривается ручное заполнение.</p>
-<h3 id="_5">Метрика маршрута</h3>
-<ul>
-<li>Это стоимость маршрута,</li>
-<li>Может быть изменена, но обычно задается автоматически и не изменяется,</li>
-<li>Чем меньше значение стоимости, тем предпочтительнее маршрут.</li>
-</ul>
-<h3 id="_6">Административная дистанция (АД)</h3>
-<ul>
-<li>Это "степень доверия" к маршруту,</li>
-<li>Чем меньше значение, тем предпочтительнее маршрут,</li>
-<li>Напрямую подключенная сеть имеет наименьшее значение - 0,</li>
-<li>Статический маршрут - следующий по "степень доверия" - 1,</li>
-<li>Протоколы динамической маршрутизаиции имеют свои значения, поэтому маршруты некоторых протоколов являются более предпочтительными,</li>
-<li>Если есть 2 маршрута в одну сеть (статический и динамический), то будет выбран статический, т.к. у него АД будет меньше.</li>
-</ul>
-<h2 id="_7">Маршрут по умолчанию</h2>
-<p>Это такой маршрут, куда нужно отправлять пакет в случае, когда устройство не знает никакой информации о сети назначения.</p>
-<h2 id="_8">Пример</h2>
-<p><img alt="scheme" src="static/scheme.png" /></p>
-<p><strong>⚠️ Задание IP-адресов не рассматривается, см. более ранние статьи.</strong> Чтобы ПК мог "пинговать" устройства из других сетей, нужно задать ему шлюз.</p>
-<h3 id="cisco">Cisco</h3>
-<h4 id="_9">Вариант "в лоб"</h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">R1</label><label for="__tabbed_1_2">R2</label><label for="__tabbed_1_3">R3</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.23.0.0 255.255.255.0 10.12.0.2
-ip route 10.3.0.0 255.255.255.0 10.12.0.2
-ip route 10.2.0.0 255.255.255.0 10.12.0.2
-ip route 10.2.1.0 255.255.255.0 10.12.0.2
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.1.0.0 255.255.255.0 10.12.0.1
-ip route 10.3.0.0 255.255.255.0 10.23.0.3
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.1.0.0 255.255.255.0 10.23.0.2
-ip route 10.12.0.0 255.255.255.0 10.23.0.2
-ip route 10.2.0.0 255.255.255.0 10.23.0.2
-ip route 10.2.1.0 255.255.255.0 10.23.0.2
-end
-</code></pre></div>
-</div>
-</div>
-</div>
-<p><code>sh ip route</code> - отобразить ТМ.</p>
-<h4 id="_10">Использование маршрута по умолчанию</h4>
-<p>Также в данном случае возможен вариант использования маршрута по умолчанию (<code>0.0.0.0/0</code>), т.к. у нескольких маршрутов одинаковые шлюзы по умолчанию.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">R1</label><label for="__tabbed_2_2">⚠️ R2</label><label for="__tabbed_2_3">R3</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 0.0.0.0 0.0.0.0 10.12.0.2
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.1.0.0 255.255.255.0 10.12.0.1
-ip route 10.3.0.0 255.255.255.0 10.23.0.3
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 0.0.0.0 0.0.0.0 10.23.0.2
-end
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Для ⚠️ R2 маршрут по умолчанию создавать не целесообразно, т.к. все статическе маршруты ведут в разные стороны.</p>
-<h4 id="_11">Суммарный маршрут</h4>
-<p>Т.к. некоторые маршруты похожи друг на друга, и они ведут через один шлюз, то их можно объединять.</p>
-<p>На R1 есть следующие маршруты, и возможен такой вариант их суммирования:</p>
-<div class="highlight"><pre><span></span><code>10.23.0.0: <mark class="critic">10.000</mark>10111.00000000.0
-10.3.0.0:  <mark class="critic">10.000</mark>00011.00000000.0
-10.2.0.0:  <mark class="critic">10.000</mark>00010.00000000.0
-10.2.1.0:  <mark class="critic">10.000</mark>00010.00000001.0
-</code></pre></div>
-<p>Итоговый маршрут: <code>10.0.0.0/11</code>, т.к. только выделенная часть является общей для всех из них.</p>
-<p>Возможен также такой вариант:</p>
-<div class="highlight"><pre><span></span><code>10.23.0.0: 10.00010111.00000000.0
-10.3.0.0:  <mark class="critic">10.0000001</mark>1.00000000.0
-10.2.0.0:  <mark class="critic">10.0000001</mark>0.00000000.0
-10.2.1.0:  <mark class="critic">10.0000001</mark>0.00000001.0
-</code></pre></div>
-<p>В итоге будет 2 маршрута с одинаковым шлюзом: <code>10.23.0.0/24</code> и <code>10.2.0.0/15</code>.</p>
-<p>Еще вариант:</p>
-<div class="highlight"><pre><span></span><code>10.23.0.0: 10.00010111.00000000.0
-10.3.0.0:  10.00000011.00000000.0
-10.2.0.0:  <mark class="critic">10.00000010.0000000</mark>0.0
-10.2.1.0:  <mark class="critic">10.00000010.0000000</mark>1.0
-</code></pre></div>
-<p>В итоге будет 3 маршрута с одинаковым шлюзом: <code>10.23.0.0/24</code>, <code>10.3.0.0/24</code> и <code>10.2.0.0/23</code>.</p>
-<p><strong>Аналогично суммарные маршруты вычисляются на остальных маршрутизаторах.</strong></p>
-<h3 id="linux">Linux</h3>
-<p>Включить <code>ip_forward</code> (см. документацию или другую статью).</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">R1</label><label for="__tabbed_3_2">R2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add 30.0.0.0/24 via 20.0.0.2
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add 10.0.0.0/24 via 20.0.0.1
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Либо вариант через маршрут по умолчанию</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">R1</label><label for="__tabbed_4_2">R2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add default via 20.0.0.2
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add default via 20.0.0.1
-</code></pre></div>
-</div>
-</div>
-</div>
-<p><code>ip route</code> - отобразить ТМ.</p>
-<p>После перезагрузки маршруты пропадут. Чтобы они сохранились, нужно добавить маршрут, например, через файл <code>/etc/network/interfaces</code> (см. документацию).</p>
-<style>
-    .copyright {
-        color: gray;
-        font-size: 0.6rem;
-    }
-</style>
-
-<div class="copyright">
-
-<hr>
-
-<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
-
-©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
-
-</div>
+<p>-
+title: "Слои Docker: что это и зачем они нужны"
+-</p>
+<h2 id="_1">Аналогия слоев</h2>
+<h3 id="_2">Многослойный торт</h3>
+<p>В многослойном торте каждый слой - это отдельный компонент, который добавляется один за другим, чтобы создать финальный продукт. В отдельности каждый слой в торте может не представлять особого интереса у потребителя, а вот торт - уже другое дело.</p>
+<p>Вот как это можно сопоставить со слоями в Docker:</p>
+<ol>
+<li>
+<p><strong>Корж</strong> - базовый слой, на который добавляются компоненты (например, крем, фрукты и т.д.).</p>
+<blockquote>
+<p>В Docker это аналогично базовому образу, поверх которого строится новый образ.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Крем</strong> - следующий слой. Кто-то может изменить состав крема или его цвет, но корж, на котором этот крем находится не меняется.</p>
+<blockquote>
+<p>В Docker это аналогично созданию нового слоя, когда в базовый образ добавляется или изменяется файл.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Украшения</strong> - дополнительные слои, которые делают торт более привлекательным. Каждый может разукрасить торт по-своему, при этом предыдущие слои не затрагиваются.</p>
+<blockquote>
+<p>В Docker это аналогично созданию еще одного нового слоя поверх предыдущего.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Готовый торт</strong> - все слои, уложенные друг на друга в определенной последовательности. Каждый из них по прежнему уникален. Каждый из слоев можно использовать в других вариантах торта.</p>
+<blockquote>
+<p>В Docker это аналогично готовому образу, который является полноценным и функциональным.</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="_3">Палитра цветов</h3>
+<p>Художник может смешивать цвета. Он может заранее подготовить смешанные цвета и использовать их, когда они ему понадобятся. Смесь цветов - новый цвет - аналог нового слоя в Docker.</p>
+<h3 id="_4">Программирование</h3>
+<ol>
+<li>
+<p>Программисты пишут код, используя функции, которые позволяют избежать дублирование кода. В данном случае функцию можно считать за слой в Docker.</p>
+</li>
+<li>
+<p>Также часто в программировнии используются готовые библиотеки/фреймворки. В одном проекте их может использоваться несколько - получается тоже аналогия слоев.</p>
+</li>
+</ol>
+<h2 id="_5">Основные особенности слоев</h2>
+<p>Исходя из примеров выше можно уже догадаться о некоторых особенностях.</p>
+<ol>
+<li>
+<p><strong>Иерархия.</strong> Каждый слой представляет собой изменение по сравнению с предыдущим. Например, если добавляется файл или устанавливается программа, то создается новый слой поверх предыдущего.</p>
+</li>
+<li>
+<p><strong>Кэширование.</strong> Используется для ускорения сборки образов. Если изменяется только один слой, Docker может повторно использовать все остальные слои, которые не изменились, что значительно ускоряет процесс сборки новых образов.</p>
+</li>
+<li>
+<p><strong>Совместное использование.</strong> Слои могут быть использованы несколькими образами. Если два образа используют один и тот же слой, Docker хранит только одну его копию на диске, что приводит к значительной экономии места при большом количестве образов.</p>
+</li>
+<li>
+<p><strong>Неизменяемость.</strong> После создания слоя его нельзя изменить. Если нужно внести изменения в образе, то будут созданы новые слои, начиная с того, где произошли изменения.</p>
+</li>
+<li>
+<p><strong>Прозрачность.</strong> Слои позволяют легко отслеживать изменения и управлять версиями, так как каждый слой представляет собой конкретный шаг в процессе сборки.</p>
+</li>
+</ol>
 
 
 
 
 
 
-
-  
-  
 
 
 

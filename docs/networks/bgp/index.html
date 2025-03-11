@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/static-routing/">
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/bgp/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Статическая маршрутизация - study.netlab</title>
+        <title>BGP - study.netlab</title>
       
     
     
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Статическая маршрутизация
+              BGP
             
           </span>
         </div>
@@ -363,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./" class="md-nav__link">
+      <a href="../static-routing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -429,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bgp/" class="md-nav__link">
+      <a href="./" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -652,7 +652,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Зачем нужна маршрутизация
+      Примеры команд
     </span>
   </a>
   
@@ -661,126 +661,9 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Виды маршрутизации
+      🧰 Лабораторная работа
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Таблица маршрутизации (ТМ)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Таблица маршрутизации (ТМ)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Заполнение таблицы
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Метрика маршрута
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      Административная дистанция (АД)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      Маршрут по умолчанию
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      Пример
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Пример">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cisco" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cisco
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Cisco">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      Вариант "в лоб"
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      Использование маршрута по умолчанию
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      Суммарный маршрут
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linux
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -800,176 +683,73 @@
 
 
 
-  <h1>Статическая маршрутизация</h1>
+  <h1>BGP</h1>
 
-<h2 id="_1">Зачем нужна маршрутизация</h2>
-<p>Для передачи сетевых пакетов необходимо знать, куда отправить его дальше. Также путей доставки может быть несколько, поэтому маршрутизатор определяет наилучшие пути до получателя.</p>
-<p><strong>Маршруты</strong> - пути передачи пакетов.</p>
-<p><strong>Таблица маршрутизации</strong> - место, где хранятся лучшие маршруты до сетей назначения.</p>
-<p>В качестве маршрутизатора могут быть отдельные устройства, linux компьютер/сервер и т.п.</p>
-<h2 id="_2">Виды маршрутизации</h2>
+<h2 id="_1">Примеры команд</h2>
+<p>Настройка соседей:</p>
+<div class="highlight"><pre><span></span><code>conf t
+router bgp {номер AS}
+neighbor {IP-адрес соседа} remote-as {номер AS}
+neighbor {IP-адрес соседа} [next-hop-self]
+
+// При использовании Loopback
+neighbor {IP-адрес Loopback соседа} ebgp-multihop ?
+neighbor {IP-адрес Loopback соседа} update-source Loopback0
+</code></pre></div>
+<p>Перераспределение маршрутов:</p>
+<div class="highlight"><pre><span></span><code>conf t
+router bgp {номер AS}
+redistribute {тип маршрутов}
+</code></pre></div>
+<p>Объявление маршрута:</p>
+<div class="highlight"><pre><span></span><code>conf t
+router bgp {номер AS}
+network ...
+</code></pre></div>
+<p>Пример использования шаблона для настройки BGP-соседей (сокращает количество вводимых команд):</p>
+<div class="highlight"><pre><span></span><code>neighbor AS302 peer-group
+neighbor AS302 remote-as 302
+neighbor AS302 update-source Loopback0
+neighbor AS302 route-reflector-client
+neighbor AS302 next-hop-self
+neighbor 5.5.5.5 peer-group AS302
+neighbor 6.6.6.6 peer-group AS302
+</code></pre></div>
+<h2 id="_2">🧰 Лабораторная работа</h2>
+<details class="info">
+<summary>Ознакомиться перед выполнением <strong>любой</strong> лабораторной работы (список раскрывается)</summary>
 <ul>
-<li>Статическая</li>
-<li>Динамическая</li>
+<li>Вместо ❔ или <code>x</code> нужно подставить свой номер по журналу</li>
+<li>Выполнять задание без "отмашки" <strong>не стоит</strong> ⛔, т.к. задание здесь может существовать более актуальная версия</li>
+<li>У каждой работы есть <strong>срок сдачи</strong> 📅, который озвучивается на занятии, после которого работа не может быть защищена на максимальный балл 📉</li>
+<li><strong>Дополнительные задания</strong> 📚  не являются обязательными, но по результатам сдачи лабораторной работы может быть выдано одно или несколько из них. Также дополнительное задание может быть сформулировано <strong>устно</strong></li>
+<li>Для каждой лабораторной работы должен быть <strong>отчет</strong> 📝 с описанием выполнения ваших действий, оформление должно соответствовать требованиям (см. на сайте учебного заведения)</li>
+<li>Нужно уметь ответить на <strong>вопросы</strong> ❓ по теме, контрольные вопросы и другие связанные вопросы</li>
+<li>Примеры могут быть выполнены <strong>по желанию</strong>, а также выданы в качестве дополнительного задания с изменениями или без <strong>в случае неуспешной 😢 защиты основной работы</strong></li>
+<li>Иногда в работах встречаются задания по <strong>IPv4 и IPv6</strong> одновременно 🔗. Это считается как <strong>одна работа</strong>. Допускается сдача работы только с IPv4 или только с IPv6, но <strong>максимальный балл</strong> в таком случае <strong>получить невозможно</strong></li>
 </ul>
-<p>В данной статье рассматривается только статическая маршрутизация.</p>
-<h2 id="_3">Таблица маршрутизации (ТМ)</h2>
-<p>Каждый маршрут в таблице состоит из:</p>
-<ul>
-<li>адрес и маска сети назначения,</li>
-<li>адрес шлюза (gateway), если это не напрямую подключенная сеть (directly connected),</li>
-<li>административная дситанция/метрика,</li>
-<li>выходящий интерфейс.</li>
-</ul>
-<h3 id="_4">Заполнение таблицы</h3>
-<p>Таблица заполняется вручную или процессами специальных протоколов. Далее рассматривается ручное заполнение.</p>
-<h3 id="_5">Метрика маршрута</h3>
-<ul>
-<li>Это стоимость маршрута,</li>
-<li>Может быть изменена, но обычно задается автоматически и не изменяется,</li>
-<li>Чем меньше значение стоимости, тем предпочтительнее маршрут.</li>
-</ul>
-<h3 id="_6">Административная дистанция (АД)</h3>
-<ul>
-<li>Это "степень доверия" к маршруту,</li>
-<li>Чем меньше значение, тем предпочтительнее маршрут,</li>
-<li>Напрямую подключенная сеть имеет наименьшее значение - 0,</li>
-<li>Статический маршрут - следующий по "степень доверия" - 1,</li>
-<li>Протоколы динамической маршрутизаиции имеют свои значения, поэтому маршруты некоторых протоколов являются более предпочтительными,</li>
-<li>Если есть 2 маршрута в одну сеть (статический и динамический), то будет выбран статический, т.к. у него АД будет меньше.</li>
-</ul>
-<h2 id="_7">Маршрут по умолчанию</h2>
-<p>Это такой маршрут, куда нужно отправлять пакет в случае, когда устройство не знает никакой информации о сети назначения.</p>
-<h2 id="_8">Пример</h2>
-<p><img alt="scheme" src="static/scheme.png" /></p>
-<p><strong>⚠️ Задание IP-адресов не рассматривается, см. более ранние статьи.</strong> Чтобы ПК мог "пинговать" устройства из других сетей, нужно задать ему шлюз.</p>
-<h3 id="cisco">Cisco</h3>
-<h4 id="_9">Вариант "в лоб"</h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">R1</label><label for="__tabbed_1_2">R2</label><label for="__tabbed_1_3">R3</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.23.0.0 255.255.255.0 10.12.0.2
-ip route 10.3.0.0 255.255.255.0 10.12.0.2
-ip route 10.2.0.0 255.255.255.0 10.12.0.2
-ip route 10.2.1.0 255.255.255.0 10.12.0.2
-end
-</code></pre></div>
+</details>
+<p><strong>🎯 Цель работы:</strong> получить навыки работы с внешним протоколом маршрутизации.</p>
+<p><strong>🌐 Схема</strong></p>
+<p><img alt="image" src="static/bgp.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Значки здания и дома означают, что там находится простая приватная сеть за маршрутизатором с NAT. Спроектировать эти сети на свое усмотрение.</p>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.1.0.0 255.255.255.0 10.12.0.1
-ip route 10.3.0.0 255.255.255.0 10.23.0.3
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.1.0.0 255.255.255.0 10.23.0.2
-ip route 10.12.0.0 255.255.255.0 10.23.0.2
-ip route 10.2.0.0 255.255.255.0 10.23.0.2
-ip route 10.2.1.0 255.255.255.0 10.23.0.2
-end
-</code></pre></div>
-</div>
-</div>
-</div>
-<p><code>sh ip route</code> - отобразить ТМ.</p>
-<h4 id="_10">Использование маршрута по умолчанию</h4>
-<p>Также в данном случае возможен вариант использования маршрута по умолчанию (<code>0.0.0.0/0</code>), т.к. у нескольких маршрутов одинаковые шлюзы по умолчанию.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">R1</label><label for="__tabbed_2_2">⚠️ R2</label><label for="__tabbed_2_3">R3</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 0.0.0.0 0.0.0.0 10.12.0.2
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 10.1.0.0 255.255.255.0 10.12.0.1
-ip route 10.3.0.0 255.255.255.0 10.23.0.3
-end
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>conf t
-ip route 0.0.0.0 0.0.0.0 10.23.0.2
-end
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Для ⚠️ R2 маршрут по умолчанию создавать не целесообразно, т.к. все статическе маршруты ведут в разные стороны.</p>
-<h4 id="_11">Суммарный маршрут</h4>
-<p>Т.к. некоторые маршруты похожи друг на друга, и они ведут через один шлюз, то их можно объединять.</p>
-<p>На R1 есть следующие маршруты, и возможен такой вариант их суммирования:</p>
-<div class="highlight"><pre><span></span><code>10.23.0.0: <mark class="critic">10.000</mark>10111.00000000.0
-10.3.0.0:  <mark class="critic">10.000</mark>00011.00000000.0
-10.2.0.0:  <mark class="critic">10.000</mark>00010.00000000.0
-10.2.1.0:  <mark class="critic">10.000</mark>00010.00000001.0
-</code></pre></div>
-<p>Итоговый маршрут: <code>10.0.0.0/11</code>, т.к. только выделенная часть является общей для всех из них.</p>
-<p>Возможен также такой вариант:</p>
-<div class="highlight"><pre><span></span><code>10.23.0.0: 10.00010111.00000000.0
-10.3.0.0:  <mark class="critic">10.0000001</mark>1.00000000.0
-10.2.0.0:  <mark class="critic">10.0000001</mark>0.00000000.0
-10.2.1.0:  <mark class="critic">10.0000001</mark>0.00000001.0
-</code></pre></div>
-<p>В итоге будет 2 маршрута с одинаковым шлюзом: <code>10.23.0.0/24</code> и <code>10.2.0.0/15</code>.</p>
-<p>Еще вариант:</p>
-<div class="highlight"><pre><span></span><code>10.23.0.0: 10.00010111.00000000.0
-10.3.0.0:  10.00000011.00000000.0
-10.2.0.0:  <mark class="critic">10.00000010.0000000</mark>0.0
-10.2.1.0:  <mark class="critic">10.00000010.0000000</mark>1.0
-</code></pre></div>
-<p>В итоге будет 3 маршрута с одинаковым шлюзом: <code>10.23.0.0/24</code>, <code>10.3.0.0/24</code> и <code>10.2.0.0/23</code>.</p>
-<p><strong>Аналогично суммарные маршруты вычисляются на остальных маршрутизаторах.</strong></p>
-<h3 id="linux">Linux</h3>
-<p>Включить <code>ip_forward</code> (см. документацию или другую статью).</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">R1</label><label for="__tabbed_3_2">R2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add 30.0.0.0/24 via 20.0.0.2
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add 10.0.0.0/24 via 20.0.0.1
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Либо вариант через маршрут по умолчанию</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">R1</label><label for="__tabbed_4_2">R2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add default via 20.0.0.2
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ip route add default via 20.0.0.1
-</code></pre></div>
-</div>
-</div>
-</div>
-<p><code>ip route</code> - отобразить ТМ.</p>
-<p>После перезагрузки маршруты пропадут. Чтобы они сохранились, нужно добавить маршрут, например, через файл <code>/etc/network/interfaces</code> (см. документацию).</p>
-<style>
-    .copyright {
-        color: gray;
-        font-size: 0.6rem;
-    }
-</style>
-
-<div class="copyright">
-
-<hr>
-
-<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
-
-©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
-
-</div>
+<p><strong>✔️ Условия</strong></p>
+<ol>
+<li>Объявить с помощью BGP только публичные адреса и сети.</li>
+<li>Настроить NAT, где разумно.</li>
+<li>В точке IXP обмен маршрутами должен происходить с помощью Route Reflector (2 шт.).</li>
+<li>Сеть датацентра должна быть доступна любому устройству.</li>
+<li>С помощью туннелей соединить филиалы (BR) с главным офисом (HQ).</li>
+<li>Внутри организации организовать обмен маршрутами с помощью OSPF через туннель.</li>
+</ol>
+<p><strong>🤔 Контрольные вопросы</strong></p>
+<ol>
+<li>Какие преимущества и недостатки использования RR?</li>
+<li>Какие правила передачи маршрутов по iBGP и eBGP?</li>
+<li>В чем отличие передаваемой информации по iBGP и eBGP?</li>
+</ol>
 
 
 
