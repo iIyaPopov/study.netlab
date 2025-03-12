@@ -1,0 +1,1952 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/vlan/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>VLAN - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vlan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VLAN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IPv6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ICMP(v6)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tcp-udp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TCP/UDP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VLAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ACL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NAT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mstp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MSTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RIP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DHCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WLAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bgp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BGP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🐋 Контейнеризация
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            🐋 Контейнеризация
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/linux-namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Пространства имен в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker-layouts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Слои образов в Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker%2Bgns3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🔒 Безопасность
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            🔒 Безопасность
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/iptables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iptables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/idps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🗃️ Прочее
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            🗃️ Прочее
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/mkdocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/jupyter-notebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jupyter Notebook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/iperf3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iperf3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🎲 Игры
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            🎲 Игры
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/codenames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Codenames
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Что такое VLAN
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схема
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vlan_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Связь между устройствами без VLAN
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Изоляция устройств
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Изоляция устройств">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант изоляции с помощью маршрутизатора
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlan_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант изоляции с помощью VLAN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-trunk-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access и Trunk в Cisco
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access и Trunk в Cisco">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access не достаточно
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access не достаточно">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      А что, если ...
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trunk порты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trunk порты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vlan-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ограничения VLAN в Trunk
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vlan-cisco-mikrotik" class="md-nav__link">
+    <span class="md-ellipsis">
+      Еще пример настройки VLAN на Cisco и MikroTik
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Еще пример настройки VLAN на Cisco и MikroTik">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схема
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlan-access-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка VLAN (access) на Cisco
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlan-access-mikrotik" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка VLAN (access) на MikroTik
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk-cisco-mikrotik" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка trunk на Cisco и MikroTik
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-vlan-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Native VLAN (Cisco)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-vlan-cisco_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Еще один "трюк" с native VLAN (Cisco)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vlan-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      VLAN в linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Самостоятельная работа
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Самостоятельная работа">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✔️ Условия
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤔 Контрольные вопросы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>VLAN</h1>
+
+<h2 id="vlan">Что такое VLAN</h2>
+<p>Virtual Local Area Network позволяет изолировать группу узлов с однаковыми требованиями в рамках одного широковещательного домена <strong>БЕЗ</strong> использования маршрутизаторов и изменения физической топологии.</p>
+<h2 id="_1">Схема</h2>
+<p><img alt="Схема сети" src="static/10.png" /></p>
+<h2 id="vlan_1">Связь между устройствами без VLAN</h2>
+<p>Чтобы все устройства были доступны друг другу, необходимо задать им IP-адреса. Шлюз задавать не нужно, т.к. все устройства находятся в одной сети (широковещательном домене).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PC1</label><label for="__tabbed_1_2">PC2</label><label for="__tabbed_1_3">PC3</label><label for="__tabbed_1_4">PC4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.1/24
+save
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.2/24
+save
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.3/24
+save
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.4/24
+save
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>С помощью <code>ping</code> можно проверить доступность ПК между собой. Они должны "пинговаться".</p>
+<h2 id="_2">Изоляция устройств</h2>
+<p>Допустим, есть две группы ПК, которые необходимо изолировать.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph group1
+        PC1
+        PC2
+    end
+
+    subgraph group2
+        PC3
+        PC4
+    end</code></pre>
+<h3 id="_3">Вариант изоляции с помощью маршрутизатора</h3>
+<p>Для этого можно воспользоваться маршрутизатором и построить такую схему</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph group1
+        PC1 o--o S1
+        PC2 o--o S1
+    end
+
+    subgraph group2
+        S2 o--o PC3
+        S2 o--o PC4
+    end
+
+    R((Router))
+
+    S1 o--o R o--o S2</code></pre>
+<p>Схема будет рабочей, но такой вариант требует внедрения в сеть маршрутизатора, выполнения дополнительных монтажных работ, что может быть затруднительным в рабочей сети.
+Поэтому, чтобы не перестраивать схему физически, можно воспользоваться технологией VLAN.</p>
+<h3 id="vlan_2">Вариант изоляции с помощью VLAN</h3>
+<p>В этом случае настройка обычно выполняется на коммутаторах. Для группы устройств, которую нужно изолировать, выделяют логическую группу - VLAN, которая идентифицируется с помощью номера от 1 до 4095. На коммутаторе "размечают" порты, к какому номеру VLAN они должны принадлежать. В итоге, передача данных возможна только между теми портами, которые имеют одинаковый номер VLAN.</p>
+<p>В итоге схема окажется такой</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph vlan 100
+        PC1
+        PC2
+    end
+
+    subgraph vlan 200
+        PC3
+        PC4
+    end
+
+    subgraph Switch
+        S.e0/0[e0/0]
+        S.e0/1[e0/1]
+        S.e0/2[e0/2]
+        S.e0/3[e0/3]
+    end
+
+    PC1 o--o S.e0/0
+    PC2 o--o S.e0/1
+    PC3 o--o S.e0/2
+    PC4 o--o S.e0/3</code></pre>
+<p>Пусть устройства из группы 1 будут находиться во VLAN с номером 100, а устройства из группы 2 - во VLAN с номером 200.</p>
+<h2 id="access-trunk-cisco">Access и Trunk в Cisco</h2>
+<h3 id="access">Access</h3>
+<p>Режим порта, который настраивается, чтобы изолировать подключенное устройство. Этому типу порта назначается номер VLAN.</p>
+<p>По умолчанию обычно все устройства находятся во VLAN 1 - это VLAN по умолчанию, который существует сам по себе.</p>
+<p>Далее приведена настройка VLAN так, что PC1 будет перемещен во VLAN 100.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Switch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>configure terminal
+interface e0/0
+switchport mode access
+switchport access vlan 100
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><code>show vlan</code> - посмотреть, какие VLAN существуют и какие порты к какой VLAN принадлежат.</p>
+<p>Если теперь на PC1 выполнить <code>ping {адрес любого ПК}</code>, то доступности не будет, т.к. PC1 теперь изолирован от остальных ПК.</p>
+<p>Далее PC2 будет перенесен во VLAN 100.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Switch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>configure terminal
+interface <mark class="critic">e0/1</mark>
+switchport mode access
+switchport access vlan 100
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Если теперь на PC1 выполнить <code>ping {адрес PC2}</code>, то PC2 будет доступен, а вот PC3 и PC4 доступны не будут. PC3 и PC4 по прежнему доступны друг другу. Можно оставить как есть, т.к. цель вроде бы достигнута, но если к любому коммутатору будет подключен еще один ПК, то он сможет взаимодействовать с PC3 и PC4, т.к. существует VLAN 1 (по умолчанию). Так быть не должно, поэтому лучше PC3 и PC4 тоже изолировать в отдельный VLAN.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Switch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int <mark class="critic">range e0/2 , e0/3</mark>
+sw mode access
+sw access vlan 200
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Теперь внутри каждой группы устройства доступны друг другу, а новые подключенные ПК не будут иметь доступ к имеющимся группам.</p>
+<h3 id="access_1">Access не достаточно</h3>
+<p>Если рассмотреть такую схему</p>
+<p><img alt="Разделение на группы в пределах разных коммутаторов" src="static/20.png" /></p>
+<p>то просто "разметить" порты с помощью <code>access</code> не достаточно, т.к. даже в пределах одной группы устройства не смогут общаться.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">S1</label><label for="__tabbed_5_2">S2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/0
+sw mode access
+sw access vlan 200
+exit
+int e0/1
+sw mode access
+sw access vlan 100
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/0
+sw mode access
+sw access vlan 200
+exit
+int e0/1
+sw mode access
+sw access vlan 100
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Происходит так потому, что интерфейсы <code>e0/2</code> на обоих коммутаторах по умолчанию в режиме <code>access</code> и во VLAN 1. Передавать данные между разными VLAN запрещено, поэтому между коммутаторами данные от ПК не передадутся.</p>
+<h4 id="_4">А что, если ...</h4>
+<p>... перенести интерфейсы <code>e0/2</code> на обоих коммутаторах во VLAN 100 и 200.</p>
+<blockquote>
+<p>Так сделать на <code>access</code> интерфейсе нельзя.</p>
+</blockquote>
+<p>Если перенести этот интерфейс во VLAN 100, например, то доступ внутри VLAN 100 восстановится. Внутри VLAN 200 доступа по прежнему не будет. Но если он нужен, то нужен порт типа <code>trunk</code>.</p>
+<h3 id="trunk">Trunk порты</h3>
+<p>Описанную выше проблему помогут решить порты типа <code>trunk</code>. Такой тип портов позволяет передавать данные разных VLAN.</p>
+<p>Если настроить на интерфейсах <code>e0/2</code> на обоих коммутаторах режим <code>trunk</code>, то данные внутри ранее настроенных VLAN смогут быть доставлены между ПК.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">S1</label><label for="__tabbed_6_2">S2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+sw trunk encapsulation dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+sw trunk encapsulation dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Теперь доступность между PC1 и PC2 (как и между PC3 и PC4) должна быть.</p>
+<div class="admonition warning">
+<p class="admonition-title">Режим <code>trunk</code> настраивать нужно с двух сторон канала</p>
+</div>
+<h4 id="vlan-trunk">Ограничения VLAN в Trunk</h4>
+<p>По умолчанию внутри <code>trunk</code> обычно разрешена передача данных любой VLAN. Чтобы разрешить передавать данные только определенных VLAN, нужно настроить это.</p>
+<p>Например, если выполнить такую настройку, то между собой смогут общаться только устройства внутри VLAN 100.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">S1</label><label for="__tabbed_7_2">S2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+sw trunk allowed vlan 100
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+sw trunk allowed vlan 100
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Чтобы разрешить передавать данные еще и внутри VLAN 200, нужно выполнить такие настройки</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">S1</label><label for="__tabbed_8_2">S2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+sw trunk allowed vlan 100,200
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+sw trunk allowed vlan 100,200
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Передача всех остальных VLAN будет запрещена.</p>
+</div>
+<h2 id="vlan-cisco-mikrotik">Еще пример настройки VLAN на Cisco и MikroTik</h2>
+<h3 id="_5">Схема</h3>
+<p>Адрес сети - 10.0.0.0/24.</p>
+<div class="admonition warning">
+<p class="admonition-title">Для всех VLAN будут браться адреса из этой сети, хотя в действительности так не рекомендуется делать, но в примере так, чтобы увидеть разницу.</p>
+</div>
+<p><img alt="Схема сети" src="static/30.png" /></p>
+<ul>
+<li>SW1 - Cisco Switch</li>
+<li>MR1 - MikroTik CHR</li>
+<li>PC1, PC3 и PC5 будут находится в VLAN 135, а остальные - в VLAN 24.</li>
+</ul>
+<h3 id="vlan-access-cisco">Настройка VLAN (access) на Cisco</h3>
+<p>Создать VLAN 24 с названием <code>VLAN24</code> на SW1. Название не обязательно. Присвоить access-портам VLAN.</p>
+<div class="highlight"><pre><span></span><code>conf t
+
+vlan 10
+name VLAN24
+exit
+
+int e0/1
+switchport access vlan 24
+end
+
+wr mem
+</code></pre></div>
+<p>Создать VLAN 135 с названием <code>VLAN135</code> на SW1. Название не обязательно. Присвоить access-портам VLAN.</p>
+<div class="highlight"><pre><span></span><code>conf t
+
+vlan 135
+name VLAN135
+exit
+
+int e0/0
+switchport access vlan 135
+end
+
+wr mem
+</code></pre></div>
+<p>Теперь PC1 и PC2 не должны быть доступны друг другу, т.к. находятся в разных VLAN.</p>
+<h3 id="vlan-access-mikrotik">Настройка VLAN (access) на MikroTik</h3>
+<p>Т.к. образ MikroTik в GNS3 является маршрутизатором, т.е. порты должны находиться в разных сетях, необходимо объединить часть портов в коммутатор. Сделать это можно с помощью <code>Bridge</code>.</p>
+<p>Создать интерфейс Bridge с именем <code>vlans</code>.</p>
+<div class="highlight"><pre><span></span><code>interface bridge add name=vlans vlan-filtering=yes
+</code></pre></div>
+<p>Перенести в Bridge необходимые порты, которые должны быть объединены как было бы на коммутаторе</p>
+<div class="highlight"><pre><span></span><code>interface bridge port add interface=ether2 bridge=vlans
+interface bridge port add interface=ether3 bridge=vlans
+interface bridge port add interface=ether4 bridge=vlans
+</code></pre></div>
+<p>Теперь PC3, PC4 и PC5 должны "видеть" друг друга, т.к. часть портов объединены, можно сказать, с помощью виртуального коммутатора внутри маршрутизатора. Если внести в Bridge порт ether1, и удалить VLAN на SW1, то друг друга видели бы все ПК.</p>
+<p>Т.к. задачей является сегментировать сеть (т.е. излолировать устройства), то необходимо часть портов убрать в свой VLAN.</p>
+<p>Вывести на экран текущие настройки Bridge</p>
+<div class="highlight"><pre><span></span><code>[admin@RouterOS] &gt; interface bridge port print                 
+Flags: X - disabled, I - inactive, D - dynamic, H - hw-offload 
+ #     INTERFACE               BRIDGE               HW  PVID PRIORITY  PATH-COST INTERNAL-PATH-COST    HORIZON
+ 0     ether3                  vlans                yes    1     0x80         10                 10       none
+ 1     ether2                  vlans                yes    1     0x80         10                 10       none
+ 2     ether4                  vlans                yes    1     0x80         10                 10       none
+</code></pre></div>
+<p>Нужно указать каждому порту свой VLAN, используя параметр <code>PVID</code>.</p>
+<p><code>numbers</code> - номера строчек из вывода выше, для которых применяются изменения</p>
+<div class="highlight"><pre><span></span><code>[admin@RouterOS] &gt; interface bridge port set numbers=0 pvid=24
+[admin@RouterOS] &gt; interface bridge port set numbers=1,2 pvid=135
+[admin@RouterOS] &gt; interface bridge port print                
+Flags: X - disabled, I - inactive, D - dynamic, H - hw-offload 
+ #     INTERFACE               BRIDGE               HW  PVID PRIORITY  PATH-COST INTERNAL-PATH-COST    HORIZON
+ 0     ether3                  vlans                yes   24     0x80         10                 10       none
+ 1     ether2                  vlans                yes  135     0x80         10                 10       none
+ 2     ether4                  vlans                yes  135     0x80         10                 10       none
+</code></pre></div>
+<p>Теперь доступны между собой только те ПК, которые находятся в одной VLAN, т.е. PC3 видит PC5, а PC4 не видит.</p>
+<h3 id="trunk-cisco-mikrotik">Настройка trunk на Cisco и MikroTik</h3>
+<p>На данный момент ПК, подключенные к разным коммутаторм и находящиеся в одной VLAN, не доступны. Чтобы обеспечить доступность, необходимо настроить trunk.</p>
+<p>На SW1 необходимо перевести порт коммутатора в режим trunk</p>
+<div class="highlight"><pre><span></span><code>conf t
+int e0/2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 24,135
+end
+wr mem
+</code></pre></div>
+<p>На MR1 необходимо добавить порт ether1 также в Bridge и настроить тегирование</p>
+<div class="highlight"><pre><span></span><code>interface bridge port add bridge=vlans interface=ether1
+interface bridge vlan add bridge=vlans vlan-ids=135 tagged=ether1 untagged=ether2,ether4
+interface bridge vlan add bridge=vlans vlan-ids=24 tagged=ether1 untagged=ether3
+</code></pre></div>
+<p>После этого PC1 сможет обмениваться пакетами с PC3 и PC5, а PC2 - с PC4, т.к. они находятся в одной VLAN. PC1 не сможет обмениваться пакетами с PC4, т.к. они находятся в разных VLAN.</p>
+<p>Можно перевести порт на SW1, куда подключен PC2, в VLAN 135, тогда ему будут доступны PC1, PC3 и PC5, а PC4 не будет доступен.</p>
+<div class="highlight"><pre><span></span><code>conf t
+int e0/1
+switchport access vlan 135
+end
+wr mem
+</code></pre></div>
+<h2 id="native-vlan-cisco">Native VLAN (Cisco)</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph S1
+        S1.e0/0[e0/0]
+        S1.e0/1[e0/1]
+    end
+
+    S1.e0/1 o--o Hub
+
+    subgraph S2
+        S2.e0/0[e0/0]
+        S2.e0/1[e0/1]
+    end
+
+    subgraph S3
+        S3.e0/0[e0/0]
+        S3.e0/1[e0/1]
+    end
+
+    PC1 o--o S1.e0/0
+    S2.e0/0 o--o PC2
+    S3.e0/0 o--o PC3
+
+
+    Hub o--o S2.e0/1
+    Hub o--o S3.e0/1
+
+    PC4 o--o Hub</code></pre>
+<p>Условия:</p>
+<ol>
+<li>PC1, PC2, PC3 - vlan 10,</li>
+<li>PC4 подключен к концентратору,</li>
+<li>Сеть - <code>10.0.0.0/24</code>,</li>
+<li>Все ПК должны "пинговаться".</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:5"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><input id="__tabbed_9_3" name="__tabbed_9" type="radio" /><input id="__tabbed_9_4" name="__tabbed_9" type="radio" /><input id="__tabbed_9_5" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">S1, S2, S3</label><label for="__tabbed_9_2">PC1</label><label for="__tabbed_9_3">PC2</label><label for="__tabbed_9_4">PC3</label><label for="__tabbed_9_5">PC4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/0
+switchport mode access
+sw access vlan 10
+exit
+
+int e0/1
+sw trunk enc dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.1/24
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.2/24
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.3/24
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip 10.0.0.4/24
+</code></pre></div>
+</div>
+</div>
+</div>
+<details class="warning">
+<summary>После этого все ПК должны быть доступны друг другу, кроме PC4.</summary>
+<p>PC4 недоступен остальным, т.к. принадлежит к VLAN 1, и native vlan на всех коммутаторах равен 1.</p>
+<p>Чтобы PC4 был доступен другим ПК, необходимо изменить native vlan на всех коммутаторах на 10.</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">S1, S2, S3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/1
+sh
+sw tr native vlan 10
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Теперь ВСЕ ПК доступны между собой.</p>
+</div>
+<h2 id="native-vlan-cisco_1">Еще один "трюк" с native VLAN (Cisco)</h2>
+<p>С помощью native VLAN можно добиться того, чтобы устройства из разных VLAN были доступны друг другу без применения маршрутизации.</p>
+<p>Для этого придется отключить протокол CDP и PVST, которые мешают это сделать. Это нормально, что они мешают это сделать, т.к. в реальности такого "трюка" не должно быть без намеренных действий.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">S1, S2, S3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+no cdp run
+no span vlan 20
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Если поместить PC3 во VLAN 20, то он перестанет быть доступен другим ПК.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">S3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/0
+sw ac vlan 20
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Чтобы вернуть доступность с помощью "трюка", необходимо поменять native VLAN на S3 на 20.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">S3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+int e0/1
+sw tr native vlan 20
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Теперь PC3 доступен другим ПК.</p>
+</div>
+<details class="warning">
+<summary>Провести такой "трюк" с несколькими VLAN в одном <code>trunk</code> не получится.</summary>
+<p>В реальности такие "трюки" можно даже не встретить, т.к. существуют более адекватные решения.</p>
+</details>
+<h2 id="vlan-linux">VLAN в linux</h2>
+<p>см. <a href="http://xgu.ru/wiki/Linux_Bridge">документацию</a></p>
+<h2 id="_6">🧠 Самостоятельная работа</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph vlan 100
+        PC1
+        PC5
+    end
+
+    subgraph vlan 200
+        PC2
+        PC3
+    end
+
+    subgraph vlan 300
+        PC4
+        PC6
+    end
+
+    S1 o--o S2 o--o S3
+
+    S1 o--o PC1
+    S1 o--o PC2
+
+    S2 o--o PC3
+    S2 o--o PC4
+
+    S3 o--o PC5
+    S3 o--o PC6</code></pre>
+<h3 id="_7">✔️ Условия</h3>
+<ol>
+<li>S1 - Cisco Switch</li>
+<li>S2 - MikroTik CHR</li>
+<li>S3 - Linux</li>
+<li>Cеть для всех ПК - <code>192.168.0.0/24</code></li>
+<li>Ограничить передачу данных в trunk только тех VLAN, которые действительно должны там передаваться.</li>
+</ol>
+<h3 id="_8">🤔 Контрольные вопросы</h3>
+<ol>
+<li>Какие ПК "пингуются" между собой, если:<ul>
+<li>делить их по VLAN?</li>
+<li>не делить их по VLAN?</li>
+<li>делить их по VLAN и задать разные сети для VLAN?</li>
+<li>не делить их по VLAN и задать разные сети для VLAN?</li>
+</ul>
+</li>
+<li>На каких сегментах сети будет содержаться тег VLAN?</li>
+</ol>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.top"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

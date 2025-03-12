@@ -1,0 +1,2203 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/dhcp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>DHCP - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dhcp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DHCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IPv6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ICMP(v6)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tcp-udp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TCP/UDP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VLAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ACL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NAT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mstp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MSTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RIP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DHCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WLAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bgp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BGP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🐋 Контейнеризация
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            🐋 Контейнеризация
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/linux-namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Пространства имен в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker-layouts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Слои образов в Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker%2Bgns3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🔒 Безопасность
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            🔒 Безопасность
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/iptables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iptables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/idps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🗃️ Прочее
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            🗃️ Прочее
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/mkdocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/jupyter-notebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jupyter Notebook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/iperf3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iperf3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🎲 Игры
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            🎲 Игры
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/codenames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Codenames
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Для чего нужен протокол DHCP?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Какие настройки выдаются устройствам?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Варианты присвоения адреса клиенту DHCP-сервером
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dora" class="md-nav__link">
+    <span class="md-ellipsis">
+      DORA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DORA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Начальная аренда адреса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Обнаружение сервера
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Предложение от сервера
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Запрос (уведомление) клиента
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Подтверждение сервера
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Продление аренды адреса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схема с несколькими DHCP-серверами
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Другие сообщения DHCP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Другие сообщения DHCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nak" class="md-nav__link">
+    <span class="md-ellipsis">
+      NAK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      RELEASE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Уязвимость протокола DHCP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройка DHCP на Cisco
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-relay" class="md-nav__link">
+    <span class="md-ellipsis">
+      Когда DHCP-relay не нужен
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Когда DHCP-relay не нужен">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-relay_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Когда DHCP-relay нужен
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Когда DHCP-relay нужен">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-relay_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример настройки DHCP-relay
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCPv6
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCPv6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Варианты получения адреса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slaac" class="md-nav__link">
+    <span class="md-ellipsis">
+      SLAAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Флаги" управления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;Флаги&#34; управления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Варианты флагов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример настройки флагов на маршрутизаторе Cisco
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схемы взаимодействия
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Схемы взаимодействия">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slaac_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SLAAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Без отслеживания состояния
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      С отслеживанием состояния
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проверка настроек
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv6-relay" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCPv6-relay
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Лабораторная работа
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧰 Лабораторная работа">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Схемы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✔️ Условия
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Дополнительные задания
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤔 Контрольные вопросы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>DHCP</h1>
+
+<h2 id="dhcp">Для чего нужен протокол DHCP?</h2>
+<ul>
+<li>Dynamic Host Configuration Protocol</li>
+<li>Упрощение настройки большого количества клиентов<ul>
+<li>ПК</li>
+<li>МФУ</li>
+<li>IP-телефоны</li>
+<li>IP-камеры</li>
+<li>и т.д.</li>
+</ul>
+</li>
+<li>В небольших сетях DHCP можно настроить на маршрутизаторе, не выделяя отдельный сервер</li>
+<li>UDP, порты 67, 68</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Note left of Server: Я могу выдавать адреса
+    Note right of Client: Мне нужен адрес
+</code></pre>
+<h2 id="_1">Какие настройки выдаются устройствам?</h2>
+<ul>
+<li>IP-адресс/маска</li>
+<li>Шлюз</li>
+<li>Домен</li>
+<li>Список адресов DNS-серверов</li>
+<li>Списко адресов NTP-серверов</li>
+<li>и т.д. (см. DHCP Options)</li>
+</ul>
+<h2 id="dhcp-">Варианты присвоения адреса клиенту DHCP-сервером</h2>
+<ul>
+<li>Статическое<ul>
+<li>Адрес назначается администратором вручную</li>
+<li>Каждый раз клиент всегда получает один и тот же адрес</li>
+<li>IP-адрес закрепляется за определенным MAC-адресом</li>
+</ul>
+</li>
+<li>Динамическое<ul>
+<li>Адрес выдается на некоторое время</li>
+<li>Каждый раз адрес может меняться</li>
+</ul>
+</li>
+<li>Автоматическое<ul>
+<li>IP-адрес закрепляется за определенным MAC-адресом (не администратором, а самим сервером)</li>
+<li>Выдается навсегда</li>
+</ul>
+</li>
+</ul>
+<h2 id="dora">DORA</h2>
+<h3 id="_2">Начальная аренда адреса</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Client -&gt;&gt; Server: Discover
+    Server -&gt;&gt; Client: Offer
+    Client -&gt;&gt; Server: Request
+    Server -&gt;&gt; Client: Acknowledgement</code></pre>
+<h3 id="_3">Обнаружение сервера</h3>
+<ul>
+<li>Источник<ul>
+<li>MAC - MAC клиента</li>
+<li>IP - <code>0.0.0.0</code></li>
+</ul>
+</li>
+<li>Получатель<ul>
+<li>MAC - <code>FF:FF:FF:FF:FF:FF</code></li>
+<li>IP - <code>255.255.255.255</code></li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Note left of Server: Ждет запросов...
+    Note right of Client: Мне нужен адрес
+    Client -&gt;&gt; Server: Discover</code></pre>
+<h3 id="_4">Предложение от сервера</h3>
+<ul>
+<li>Источник<ul>
+<li>MAC - Предполагаемый IP клитента</li>
+<li>IP - IP сервера</li>
+</ul>
+</li>
+<li>Получатель<ul>
+<li>MAC - MAC клиента</li>
+<li>IP - MAC сервера</li>
+</ul>
+</li>
+<li>Сервер отправляет предварительные настройки</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Note left of Server: У меня есть такой адрес
+    Server -&gt;&gt; Client: Offer
+    Note right of Client: 🤔 Хм...</code></pre>
+<h3 id="_5">Запрос (уведомление) клиента</h3>
+<ul>
+<li>Подтверждает предложившему серверу, что согласен с настройками</li>
+<li>Сервер помечает IP как занятый</li>
+<li>Отправляется всем в сети, чтобы уведомить все DHCP-серверы, если еще есть такие</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Note right of Client: Я согласен с настройками
+    Client -&gt;&gt; Server: Request
+    Note left of Server: Теперь этот адрес занят</code></pre>
+<h3 id="_6">Подтверждение сервера</h3>
+<ul>
+<li>Уведомление клиента о резервировании адреса</li>
+<li>Сервер сообщает время, в течение которого можно использовать адрес</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Note left of Server: Резервирую окончательно адрес
+    Server -&gt;&gt; Client: Acknowledgement</code></pre>
+<h3 id="_7">Продление аренды адреса</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Server
+    participant Client
+
+    Note over Server, Client: DORA
+
+    loop Истекло половина времени аренды (lease time)
+        Client -&gt;&gt; Server: Request
+        Server -&gt;&gt; Client: Acknowledgement
+    end</code></pre>
+<p>Если сервер, выдавший адрес, не отвечает:</p>
+<ul>
+<li>Клиент ждет половину оставшегося времени и снова пытается продлить</li>
+<li>Попытки продолжаются до истчения 7/8 времени аренды</li>
+<li>После истечени 7/8 времени аренды отправляется широковещательный запрос, чтобы его могли увидеть все DHCP-серверы</li>
+</ul>
+<h3 id="dhcp-_1">Схема с несколькими DHCP-серверами</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant S1
+    participant C
+    participant S2
+
+    Note right of C: Мне нужен адрес
+    Note over S1, S2: Discover (всем)
+
+    Note right of S1: У меня есть адрес
+    S1 -&gt;&gt; C: Offer
+    Note right of S2: У меня есть адрес
+    S2 -&gt;&gt; C: Offer
+
+    Note right of C: Возьму адрес от S1
+    Note over S1, S2: Request (всем)
+
+    Note right of S1: Резервирую адрес для C
+    S1 -&gt;&gt; C: Acknowledgement
+
+    loop Пока не прошло 7/8 времени аренды
+        Note over C, S1: Прошло 1/2 оставшегося времени
+        C -&gt;&gt; S1: Request
+        Note over C, S1: S1 не отвечает
+    end
+
+    Note right of C: Теперь запрос всем
+    Note over S1, S2: Нужен адрес (всем)
+    S2 -&gt;&gt; C: Вот адрес
+
+    Note over C, S2: Взаимодействие продолжается</code></pre>
+<h2 id="dhcp_1">Другие сообщения DHCP</h2>
+<h3 id="nak">NAK</h3>
+<ul>
+<li>Отправляет сервер</li>
+<li>Может быть отправлено клиенту, чтобы он перестал использовать адрес</li>
+</ul>
+<h3 id="release">RELEASE</h3>
+<ul>
+<li>Отправляет клиент</li>
+<li>Уведомление сервера об освобождении адреса (досрочное окончание аренды)</li>
+</ul>
+<h2 id="dhcp_2">Уязвимость протокола DHCP</h2>
+<ul>
+<li><code>DORA</code> содержит широковещательную рассылку</li>
+<li>Первый откликнувшийся DHCP-сервер получает возможность предложить адрес</li>
+<li>Сервер злоумышленника может дать самый быстрый ответ клиенту<ul>
+<li>Возможность дать ложную информацию клиенту<ul>
+<li>Например, DNS-сервер</li>
+</ul>
+</li>
+<li>Возможность легко анализировать незащищенный трафик</li>
+</ul>
+</li>
+</ul>
+<h2 id="dhcp-cisco">Настройка DHCP на Cisco</h2>
+<p>Выдача клиентам адреса из сети <code>192.168.0.0/24</code>:</p>
+<div class="highlight"><pre><span></span><code>conf t
+ip dhcp pool LAN
+network 192.168.0.0 255.255.255.0
+default-router 192.168.0.1
+domain-name net.lab
+dns-server 192.168.0.2
+end
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Не все параметры обязательны.</p>
+</div>
+<p>Если нужно исключить некоторые адреса из пула:</p>
+<div class="highlight"><pre><span></span><code>conf t
+ip dhcp excluded-address 192.168.0.1 192.168.0.2
+end
+</code></pre></div>
+<p>Проверить выданные адреса - <code>show ip dhcp binding</code>.</p>
+<p>Получить адрес по DHCP - <code>ip address dhcp</code>.</p>
+<h2 id="dhcp-relay">Когда DHCP-relay не нужен</h2>
+<p>В данных примерах сервер и клиенты в одной сети, поэтому ретранслятор не нужен.</p>
+<h3 id="1">Пример 1</h3>
+<pre class="mermaid"><code>flowchart LR
+    R((DHCP server))
+    C1[Client 1]
+    C2[Client 2]
+    S[Switch]
+
+    C1 o--o S
+    C2 o--o S
+    S o--o R</code></pre>
+<h3 id="2">Пример 2</h3>
+<pre class="mermaid"><code>flowchart LR
+    R((DHCP server))
+    C1[Client 1]
+    C2[Client 2]
+    S1[Switch]
+    S2[Switch]
+    C3[Client 3]
+    C4[Client 4]
+
+    C1 o--o S1
+    C2 o--o S1
+    S1 o--o R
+    R o--o S2
+    S2 o--o C3
+    S2 o--o C4</code></pre>
+<h2 id="dhcp-relay_1">Когда DHCP-relay нужен</h2>
+<p>А что делать в таких ситуациях?</p>
+<h3 id="1_1">Пример 1</h3>
+<pre class="mermaid"><code>flowchart LR
+    R((Router))
+    DHCP((DHCP server))
+    C1[Client 1]
+    C2[Client 2]
+    S1[Switch]
+    S2[Switch]
+    C3[Client 3]
+    C4[Client 4]
+
+    DHCP o--o S1
+    C1 o--o S1
+    C2 o--o S1
+    S1 o--o R
+    R o--o S2
+    S2 o--o C3
+    S2 o--o C4</code></pre>
+<h3 id="2_1">Пример 2</h3>
+<pre class="mermaid"><code>flowchart LR
+    R((Router))
+    DHCP((DHCP server))
+    C1[Client 1]
+    C2[Client 2]
+    S1[Switch]
+    S2[Switch]
+    C3[Client 3]
+    C4[Client 4]
+
+    DHCP o--o R
+    C1 o--o S1
+    C2 o--o S1
+    S1 o--o R
+    R o--o S2
+    S2 o--o C3
+    S2 o--o C4</code></pre>
+<h3 id="3">Пример 3</h3>
+<pre class="mermaid"><code>flowchart LR
+    R1((DHCP server))
+    R2((Router))
+    C1[Client 1]
+    C2[Client 2]
+    S1[Switch]
+    S2[Switch]
+    C3[Client 3]
+    C4[Client 4]
+
+    C1 o--o S1
+    C2 o--o S1
+    S1 o--o R1
+    R1 o--o R2
+    R2 o--o S2
+    S2 o--o C3
+    S2 o--o C4</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Можно создать в каждой подсети свой DHCP-сервер, но это может быть неэффективно.</p>
+</div>
+<ul>
+<li>Маршрутизатор не пересылает широковещательные кадры</li>
+<li>Ретранслятор - вспомогательное устройство<ul>
+<li>Помогает добраться DHCP-сообщениям от клиента к серверу, и наоборот</li>
+</ul>
+</li>
+</ul>
+<h3 id="dhcp-relay_2">Пример настройки DHCP-relay</h3>
+<ul>
+<li>Настройки нужно выполнять на ближайшем к клиенту маршрутизаторе.</li>
+<li>Этот маршрутизатор должен иметь доступность с DHCP-сервером.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>conf t
+int { интерфейс в сторону клиента, где будут запросы }
+ip helper-address { адрес DHCP-сервера }
+end
+</code></pre></div>
+<h2 id="dhcpv6">DHCPv6</h2>
+<h3 id="_8">Варианты получения адреса</h3>
+<ul>
+<li>С отслеживанием состояния<ul>
+<li>Выдача адреса DHCP-сервером</li>
+</ul>
+</li>
+<li>Без отслеживания состояния<ul>
+<li>Получение префикса, длины префикса и адрес шлюза по умолчанию от маршрутизатора IPv6 без помощи DHCP-сервера</li>
+</ul>
+</li>
+<li>SLAAC (“слэк”)<ul>
+<li>Без участия DHCP-сервера</li>
+</ul>
+</li>
+</ul>
+<h3 id="slaac">SLAAC</h3>
+<ul>
+<li>Stateless Address Autoconfiguration</li>
+<li>Никем не отслеживается использование адреса</li>
+<li>Используется ICMPv6<ul>
+<li>Многоадресная рассылка на адрес <code>FE02::2</code> (все маршрутизаторы) - сообщение <code>RS</code></li>
+<li>Многоадресная рассылка на адрес <code>FE02::1</code> (все узлы) - сообщение <code>RA</code></li>
+</ul>
+</li>
+<li>Процедура EUI-64 или случайно</li>
+<li>В конце проверка на уникальность в сети</li>
+</ul>
+<h3 id="_9">"Флаги" управления</h3>
+<ul>
+<li><code>RA</code> сообщение содержит специальные флаги<ul>
+<li>Флаг <code>М</code></li>
+<li>Флаг <code>О</code></li>
+</ul>
+</li>
+<li>С помощью их комбинаций указывается, каким образом нужно получить адрес</li>
+</ul>
+<h4 id="_10">Варианты флагов</h4>
+<ul>
+<li><code>М = 0</code>, <code>О = 0</code><ul>
+<li>SLAAC - использовать информацию из сообщения RA + EUI-64</li>
+</ul>
+</li>
+<li><code>М = 0</code>, <code>О = 1</code><ul>
+<li>Без отслеживания состояния - адрес от R + EUI-64, остальное от DHCPv6</li>
+</ul>
+</li>
+<li><code>М = 1</code><ul>
+<li>DHCPv6 с отслеживанием состояния - вся информация от DHCPv6</li>
+</ul>
+</li>
+</ul>
+<h4 id="cisco">Пример настройки флагов на маршрутизаторе Cisco</h4>
+<p>Пример установки обоих флагов в 1 (мало смысла в одновременной установке флага в 1).</p>
+<div class="highlight"><pre><span></span><code>conf t
+int { в сторону клиента }
+ipv6 nd managed-config-flag
+ipv6 nd other-config-flag
+end
+</code></pre></div>
+<h3 id="_11">Схемы взаимодействия</h3>
+<h4 id="slaac_1">SLAAC</h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Router
+    participant Client
+    participant DHCPv6
+
+    Client -&gt;&gt; Router: RS
+    Note left of Router: Отправлю M = 0, O = 0
+    Router -&gt;&gt; Client: RA
+    Note right of Client: Генерирую адрес с помощью EUI-64
+    Note right of DHCPv6: Никому не понадобился :(</code></pre>
+<h4 id="_12">Без отслеживания состояния</h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Router
+    participant Client
+    participant DHCPv6
+
+    Client -&gt;&gt; Router: RS
+    Note left of Router: Отправлю M = 0, O = 1
+    Router -&gt;&gt; Client: RA
+    Note right of Client: Генерирую адрес с помощью EUI-64
+    Note right of Client: Нужно запросить адрес DNS
+    Client -&gt;&gt; DHCPv6: Solicit (multicast)
+    DHCPv6 -&gt;&gt; Client: Advertise (unicast)
+    Client -&gt;&gt; DHCPv6: Information Request (unicast)
+    DHCPv6 -&gt;&gt; Client: Reply (unicast)</code></pre>
+<ul>
+<li><code>FF02::1:2</code> - адрес многоадресной (multicast) рассылки от клиента всем DHCPv6-серверам</li>
+<li>Используется в <code>Solicit</code> здесь и далее в примерах</li>
+<li>От клиента к серверу - 547 порт UDP</li>
+<li>От сервера к клиенту - 546 порт UDP</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Router</label><label for="__tabbed_1_2">DHCPv6</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+ipv6 unicast-routing
+
+int {в сторону клиента}
+ipv6 address 2001::1 /64
+no ipv6 nd managed-config-flag
+ipv6 nd other-config-flag
+no sh
+
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+ipv6 unicast-routing
+
+ipv6 dhcp pool LAN
+dns-server 2001::1
+domain-name net.lab
+
+int {в сторону клиента}
+ipv6 address 2001::2 /64
+ipv6 dhcp server LAN
+no sh
+
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="_13">С отслеживанием состояния</h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Router
+    participant Client
+    participant DHCPv6
+
+    Client -&gt;&gt; Router: RS
+    Note left of Router: Отправлю M = 1
+    Router -&gt;&gt; Client: RA
+    Note right of Client: Нужно запросить все настройки у DHCPv6
+    Client -&gt;&gt; DHCPv6: Solicit (multicast)
+    DHCPv6 -&gt;&gt; Client: Advertise (unicast)
+    Client -&gt;&gt; DHCPv6: Request (unicast)
+    DHCPv6 -&gt;&gt; Client: Reply (unicast)</code></pre>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Router</label><label for="__tabbed_2_2">DHCPv6</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+ipv6 unicast-routing
+
+int { в сторону клиента }
+ipv6 address 2001::1 /64
+ipv6 nd managed-config-flag
+no sh
+
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+ipv6 unicast-routing
+
+ipv6 dhcp pool LAN
+address prefix 2001::/64 [ lifetime ? ]
+dns-server 2001::1
+domain-name net.lab
+
+int { в сторону клиента }
+ipv6 address 2001::2 /64
+ipv6 dhcp server LAN
+no sh
+
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="_14">Проверка настроек</h3>
+<p><code>show ipv6 dhcp pool</code></p>
+<p><code>show ipv6 dhcp binding</code></p>
+<h3 id="dhcpv6-relay">DHCPv6-relay</h3>
+<p>Может понадобиться по тем же причинам, что в IPv4.</p>
+<p>Пример настройки</p>
+<div class="highlight"><pre><span></span><code>conf t
+ipv6 dhcp relay destination { адрес DHCP-сервера }
+end
+</code></pre></div>
+<h2 id="_15">🧰 Лабораторная работа</h2>
+<details class="info">
+<summary>Ознакомиться перед выполнением <strong>любой</strong> лабораторной работы (список раскрывается)</summary>
+<ul>
+<li>Вместо ❔ или <code>x</code> нужно подставить свой номер по журналу</li>
+<li>Выполнять задание без "отмашки" <strong>не стоит</strong> ⛔, т.к. задание здесь может существовать более актуальная версия</li>
+<li>У каждой работы есть <strong>срок сдачи</strong> 📅, который озвучивается на занятии, после которого работа не может быть защищена на максимальный балл 📉</li>
+<li><strong>Дополнительные задания</strong> 📚  не являются обязательными, но по результатам сдачи лабораторной работы может быть выдано одно или несколько из них. Также дополнительное задание может быть сформулировано <strong>устно</strong></li>
+<li>Для каждой лабораторной работы должен быть <strong>отчет</strong> 📝 с описанием выполнения ваших действий, оформление должно соответствовать требованиям (см. на сайте учебного заведения)</li>
+<li>Нужно уметь ответить на <strong>вопросы</strong> ❓ по теме, контрольные вопросы и другие связанные вопросы</li>
+<li>Примеры могут быть выполнены <strong>по желанию</strong>, а также выданы в качестве дополнительного задания с изменениями или без <strong>в случае неуспешной 😢 защиты основной работы</strong></li>
+<li>Иногда в работах встречаются задания по <strong>IPv4 и IPv6</strong> одновременно 🔗. Это считается как <strong>одна работа</strong>. Допускается сдача работы только с IPv4 или только с IPv6, но <strong>максимальный балл</strong> в таком случае <strong>получить невозможно</strong></li>
+</ul>
+</details>
+<p><strong>🎯 Цель работы:</strong> получить навыки настройки DHCP-сервера и DHCP-Relay на маршрутизаторе.</p>
+<h3 id="_16">🌐 Схемы</h3>
+<div class="admonition warning">
+<ol>
+<li>В качестве PC использовать любое устройство с DHCP-клиентом. Рекомендуется Linux (требуется изучение документации).</li>
+<li>В качестве SRV рекомендуется использовать маршрутизатор Cisco.</li>
+</ol>
+</div>
+<p><strong>IPv4</strong></p>
+<p><img alt="img" src="static/ipv4.png" /></p>
+<p><strong>IPv6</strong></p>
+<p><img alt="img" src="static/ipv6.png" /></p>
+<h3 id="_17">✔️ Условия</h3>
+<p><strong>IPv4</strong></p>
+<ol>
+<li>В сети <code>10.x.12.0</code> два маршрутизатора делят один пул пополам.</li>
+<li>R4 является DHCP-сервром для сетей <code>10.x.31.0</code> и <code>10.x.32.0</code>.</li>
+<li>Способ маршрутизации любой.<ol>
+<li>В случае статической маршрутизации на R4 должно быть 2 маршрута в сеть <code>10.x.12.0</code> и необходимо настроить <strong>IP SLA</strong>.</li>
+</ol>
+</li>
+<li>При отключении R1 или R2 доступность сети <code>10.x.12.0</code> должна остаться.</li>
+</ol>
+<p><strong>IPv6</strong></p>
+<ol>
+<li>В сети <code>2000:x:1::</code> использовать SLACC.<ol>
+<li>R1 выдает только префикс.</li>
+</ol>
+</li>
+<li>В сети <code>2000:x:2::</code> использовать вариант DHCPv6 <strong>без отслеживания</strong> состояния.<ol>
+<li>R1 выдает префикс.</li>
+<li>SRV1 выдает любой адрес DNS-сервера.</li>
+</ol>
+</li>
+<li>В сети <code>2000:x:3::</code> использовать вариант DHCPv6 <strong>с отслеживанием</strong> состояния.<ol>
+<li>R1 ничего не выдает (кроме флагов).</li>
+<li>SRV2 выдает любой адрес DNS-сервера.</li>
+</ol>
+</li>
+<li>Способ маршрутизации любой.</li>
+</ol>
+<h3 id="_18">📚 Дополнительные задания</h3>
+<ol>
+<li>Вместо статической маршрутизации использовать OSPF.</li>
+<li>В сети IPv4 настроить VRRP.</li>
+<li>Создать сеть из двух маршрутизаторов (с DHCP-сервером) и ПК. Настроить время аренды адреса 32 секунд. Получить на ПК адрес по DHCP. Отключить сервер, с которого был получен адрес. Проверить, будет ли по истечении 7/8 времени аренды (28 секунд) ПК будет просить адрес у другого сервера.</li>
+<li>Изменение адресации.</li>
+</ol>
+<h3 id="_19">🤔 Контрольные вопросы</h3>
+<ol>
+<li>Почему <code>Request</code> в процессе <code>DORA</code> имеет <code>broadcast</code> рассылку?</li>
+<li>Изучите с помощью Wireshark или аналога заголовок DHCP.<ol>
+<li>Какие параметры в нем передаются?</li>
+<li>Какие протокол и порт транспортного уровня используется DHCP?</li>
+<li>Какие номера опций имеют шлюз, срок аренды, маска подсети?</li>
+<li>В случае использования DHCP-relay как DHCP-сервер понимает, из какого пула выдать адрес?</li>
+</ol>
+</li>
+<li>Варианты присвоения адреса.<ol>
+<li>Какой вариант используется чаще всего?</li>
+<li>В каких случаях используется статическое присвоение?</li>
+</ol>
+</li>
+<li>Кто определяет срок аренды адреса?</li>
+<li>Какой срок аренды используется по умолчанию?</li>
+<li>Зачем нужно исключать адреса из пула?</li>
+<li>Приведите пример, когда DHCP-сервер является еще и DHCP-клиентом.</li>
+<li>Чем отличаются вариант с отслеживанием от варианта без отслеживания?</li>
+<li>Можно ли исключить адреса из DHCPv6 пула?</li>
+<li>Как разделить в одной LAN все возможные адреса между двумя DHCP-серверами?</li>
+<li>Почему в DHCPv6 2 аналога сообщения <code>Request</code> из DHCPv4?</li>
+<li>Как задать время аренды адреса?</li>
+<li>Какой смысл разделения одного пула адресов на 2 и более DHCP-сервера?</li>
+<li>Какие номера <code>options</code> имеют шлюз по умолчанию, маска, адрес DNS-сервера?</li>
+</ol>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.top"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

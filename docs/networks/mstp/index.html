@@ -1,0 +1,2425 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iiyapopov.github.io/study.netlab/networks/mstp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>MSTP - study.netlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CNoto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Noto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="study.netlab" class="md-header__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            study.netlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MSTP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="study.netlab" class="md-nav__button md-logo" aria-label="study.netlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    study.netlab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏗️ Подготовка стенда
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🌐 Сети
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🌐 Сети
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Первая схема в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Коммутатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Маршрутизатор
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subnets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Деление на подсети
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Статическая маршрутизация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FHRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IPv6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icmp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ICMP(v6)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tcp-udp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TCP/UDP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VLAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ACL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NAT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MSTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RIP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ospf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSPF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DHCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WLAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bgp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BGP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🐋 Контейнеризация
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            🐋 Контейнеризация
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/linux-namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Пространства имен в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker-layouts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Слои образов в Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker%2Bgns3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker в GNS3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🔒 Безопасность
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            🔒 Безопасность
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/iptables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iptables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/idps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🗃️ Прочее
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            🗃️ Прочее
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/mkdocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/jupyter-notebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jupyter Notebook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/iperf3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iperf3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    🎲 Игры
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            🎲 Игры
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/codenames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Codenames
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Теоретические сведения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Теоретические сведения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Зачем нужен STP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Допущения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Необходимость избыточных маршрутов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Примеры петель в сети
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проблемы петель
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение проблем избыточности
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Как узнать, какие порты блокировать и на каких устройствах?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Роли портов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Правила блокировки портов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Состояния портов STP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stp_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Разновидности STP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      Примеры (Cisco)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Примеры (Cisco)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Самостоятельная работа
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Лабораторная работа
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧰 Лабораторная работа">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Схема
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✔️ Условия
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤔 Контрольные вопросы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>MSTP</h1>
+
+<h2 id="_1">Теоретические сведения</h2>
+<h3 id="stp">Зачем нужен STP</h3>
+<p>Протокол для избавления сети от логических петель.</p>
+<h3 id="_2">Допущения</h3>
+<ol>
+<li>Реальные значения MAC-адреса и ID портов не имеют значения.</li>
+<li>MAC-адрес коммутатора зависит от его номера на схеме.<ol>
+<li>Чем больше номер, тем больше MAC-адрес.</li>
+<li>Например, MAC-адрес коммутатора <code>S1</code> меньше, MAC-адрес <code>S2</code>.</li>
+</ol>
+</li>
+<li>ID портов на коммутаторе зависит от его номера.<ol>
+<li>Чем больше номер, тем больше ID.</li>
+<li>Например, ID порта <code>e0/0</code> меньше, чем ID порта <code>e0/1</code>.</li>
+<li>Например, ID порта <code>e0/1</code> меньше, чем ID порта <code>e1/0</code>.</li>
+</ol>
+</li>
+<li>Скорость каналов и портов везде одинаковая, если не указано иного.</li>
+<li>Наличие ПК на схемах для объяснения не обязательно.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">В реальности необходимо смотреть реальные значения, а не опираться на допущения. Реальные значения не обязаны зависеть от имен устройств и портов.</p>
+</div>
+<h3 id="_3">Необходимость избыточных маршрутов</h3>
+<ul>
+<li>Сбой в сетях</li>
+<li>Альтернативные пути для балансировки нагрузки</li>
+</ul>
+<h3 id="_4">Примеры петель в сети</h3>
+<p><img alt="Петли в сети" src="static/10.png" /></p>
+<h3 id="_5">Проблемы петель</h3>
+<p><strong>Широковещательный шторм</strong></p>
+<p>У Ethernet кадров нет <code>TTL</code>. Это также влияет и на проблемы, указанные дальше.
+Может привести к потреблению всей доступной полосы пропускания.</p>
+<p><img alt="Пример нестабильности" src="static/20.png" /></p>
+<p><strong>Нестабильность базы данных MAC-адресов</strong></p>
+<p>Если любой из ПК отправит широковещательный кадр, и тот когда попадет в петлю, коммутаторы будут заменять в таблице коммутации <strong>порт источника</strong>, 
+пока кадр не исчезнет из сети.</p>
+<p><img alt="Пример нестабильности" src="static/30.png" /></p>
+<p><strong>Множественная передача кадров</strong></p>
+<p>Дублирование кадров протоколы верхнего уровня могут не распознать и не удалить их. TCP нумерует сообщения, поэтому он может распознать дубликаты.</p>
+<h3 id="_6">Решение проблем избыточности</h3>
+<ul>
+<li>STP - Spanning Tree Protocol (протокол остовного дерева)<ul>
+<li>Стандарт IEEE 802.1D</li>
+</ul>
+</li>
+<li>Меняет сеть логически, избавляя от петель<ul>
+<li>Между двумя точками сети оставляет <strong>только один</strong> путь</li>
+<li>Физически канал никуда не пропадает</li>
+</ul>
+</li>
+<li>STP выключает избыточные каналы и включает их обратно при необходимости<ul>
+<li>Блокирует и разблокирует порты на коммутаторе</li>
+<li>Заблокированный порт не передает никакие данные, кроме служебных для протокола STP</li>
+</ul>
+</li>
+<li>В итоге петли пропадают <strong>логически</strong>, но <strong>не физически</strong></li>
+</ul>
+<h3 id="_7">Как узнать, какие порты блокировать и на каких устройствах?</h3>
+<p><strong>Корневой мост</strong></p>
+<ul>
+<li>Синонимы: корневой коммутаторе, root bridge</li>
+<li>Один в широковещательном домене</li>
+<li>Начальная задача STP - выбрать корневой мост<ul>
+<li>Корневым мостом становится коммутатор с минимальным значением Bridge ID</li>
+</ul>
+</li>
+</ul>
+<p><strong>Bridge ID</strong></p>
+<ul>
+<li>Есть у каждого коммутатора</li>
+<li>Состоит из:<ul>
+<li>Приоритета - 2 байта</li>
+<li>MAC-адреса коммутатора - 6 байтов</li>
+</ul>
+</li>
+</ul>
+<p><strong>Приоритет</strong></p>
+<ul>
+<li>Настраиваемое значение<ul>
+<li>Выбрать самому корневой мост</li>
+</ul>
+</li>
+<li>Корневой мост - самый низкий приоритет<ul>
+<li>Если отключается корневой коммутатор, то его место занимает следующий по значению Bridge ID коммутатор</li>
+</ul>
+</li>
+<li>Диапазон: от 0 до 61440 с шагом в 4096<ul>
+<li>Старшие 4 бита</li>
+<li>0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, 57344 и 61440</li>
+<li>Остальные биты для VLAN.</li>
+</ul>
+</li>
+<li>По умолчанию у Cisco значение приоритета - 32768</li>
+</ul>
+<p><strong>Root ID</strong></p>
+<ul>
+<li>Это Bridge ID, который указывает на корневой мост</li>
+<li>Корневым мостом становится коммутатор с наименьшим Bridge ID</li>
+</ul>
+<p><strong>BPDU-кадр</strong></p>
+<ul>
+<li>Содержит Bridge ID, Root ID, стоимость и другие параметры</li>
+<li>Рассылается каждые 2 секунды<ul>
+<li>MAC-адрес групповой рассылки - <code>01:80:C2:00:00:00</code></li>
+<li>Только внутри широковещательного домена</li>
+</ul>
+</li>
+<li>Корневым мостом становится коммутатор с минимальным значением Bridge ID</li>
+</ul>
+<p><strong>Процесс выбора корневого моста</strong></p>
+<ul>
+<li>Изначально каждый коммутатор считает себя корневым</li>
+<li>В первом BPDU всегда Root ID и Bridge ID совпадают</li>
+<li>При получении сравнивается полученный Root ID с локальным (со своим)<ul>
+<li>Если принятый Root ID &gt; локального Root ID, то локальный Root ID не изменяется</li>
+<li>Если принятый Root ID &lt; локального Root ID, то локальный Root ID изменяется</li>
+</ul>
+</li>
+</ul>
+<p><strong>Определение пути до корневого моста</strong></p>
+<p>На данный момент недоступна передача данных кроме BPDU-кадров.</p>
+<p>Каждый некорневой коммутатор определяет стоимость пути до корневого моста.</p>
+<ul>
+<li>При вычислении учитывается скорость передачи по каналам</li>
+<li>Сумма всех портов на пути есть стоимость пути до корневого моста</li>
+<li><a href="https://ru.wikipedia.org/wiki/STP#%D0%A1%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D1%8C_%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8_%D0%B8_%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C_%D0%BF%D1%83%D1%82%D0%B8">Стоимости путей (Википедия)</a></li>
+<li>Стоимость порта можно изменить для гибкости</li>
+</ul>
+<p>После всех вычислений определяются роли портов на каждом коммутаторе.</p>
+<h3 id="_8">Роли портов</h3>
+<ul>
+<li>Отключенный (disabled)<ul>
+<li>Отключен администратором</li>
+</ul>
+</li>
+<li>Корневой (root)<ul>
+<li>Порт, через который можно добраться с некорневого моста до корневого моста</li>
+<li>Через этот порт стоимость до корневого моста минимальна</li>
+<li>Может быть только один на коммутаторе</li>
+<li>Нет такого порта на корневом коммутаторе</li>
+</ul>
+</li>
+<li>Назначенный (designated)<ul>
+<li>Не корневой и не альтернативный порт</li>
+<li>Если на одном конце корневой порт, то на другом - назначенный</li>
+</ul>
+</li>
+<li>Альтернативный / заблокированный / резервный (atlernative / blocked)<ul>
+<li>На другом конце не корневой порт</li>
+</ul>
+</li>
+</ul>
+<p>На следующей схеме показан корневой мост (Root bridge) (см. допущения), роли портов и заблокированный порт (А). Почему заблокирован этот порт см. далее.</p>
+<p><img alt="Роли портов" src="static/40.png" /></p>
+<h3 id="_9">Правила блокировки портов</h3>
+<p>Если в сети есть петли, то необходимо где-то блокировать порты.</p>
+<blockquote>
+<p><strong>💡 Ассоциация с дорогами</strong></p>
+<p>Проще будет понять, какие порты какую роль получают, если коммутаторы заменить на перекрестки, а каналы связи - на дороги. Человеку или автомобилю быстрее проехать по более короткому пути до центра города (Root bridge). И дороги бывают разные по качеству, поэтому и скорость (или стоимость) проезда по ним будет разная.</p>
+</blockquote>
+<p>Порты блокируются на устройствах, у которых есть несколько путей до корневого моста. При этом для блокировки портов выбирается то устройство, которое наиболее удалено от корневого моста.</p>
+<p>В трех примерах ниже корневой мост - <code>S1</code>, поэтому на <code>S2</code> нужно блокировать порты.</p>
+<p>Рассмотрим такую схему.</p>
+<p><img alt="Пример" src="static/50.png" /></p>
+<p>На этой схеме заблокированы будут интерфейсы <code>e0/1</code>, <code>e0/2</code> на <code>S2</code>. На <code>S1</code> (не <code>S2</code>) порт <code>e0/0</code> имеет наименьший Port ID, поэтому этот канал не будет заблокирован, а остальные будут заблокированы. На <code>S2</code> порт <code>e0/0</code> тоже имеет наименьший Port ID, но это не имеет значения в данном случае.</p>
+<p>Рассмотрим такую схему.</p>
+<p><img alt="Пример" src="static/60.png" /></p>
+<p>Здесь были изменены порты местами на <code>S1</code>. Незаблокированным портом будет <code>e0/2</code> на <code>S2</code>, т.к. с другой стороны на <code>S1</code> порт <code>e0/0</code> имеет наименьший Port ID. Остальные порты на <code>S2</code> будут заблокированы.</p>
+<p>Рассмотрим такую схему.</p>
+<p><img alt="Пример" src="static/70.png" /></p>
+<p>Здесь были изменены порты местами на <code>S2</code>. Незаблокированным портом будет <code>e0/1</code> на <code>S2</code>, т.к. с другой стороны на <code>S1</code> порт <code>e0/0</code> имеет наименьший Port ID.</p>
+<p>Когда несколько устройств равноудалены от корневого моста, порты блокируются порты на том устройстве, у которого Bridge ID наибольший.</p>
+<p><img alt="Роли портов" src="static/40.png" /></p>
+<p>В случае, когда есть несколько каналов в "невыгодном" пути, то будут заблокированы все порты, т.к. есть более "дешевый" путь. И блокировка происходит на <code>S3</code>, т.к. у него Bridge ID больше, чем у <code>S2</code>.</p>
+<p><img alt="Роли портов" src="static/80.png" /></p>
+<p>Когда на кратчайшем пути есть несколько каналов, то остается только один. Остается рабочим только тот порт, который подключен к порту (на противоположном коммутаторе) с наименьшим ID.</p>
+<p><img alt="Роли портов" src="static/90.png" /></p>
+<blockquote>
+<p>На <code>S3</code> заблокирован порт по причине, уже описанной ранее. На <code>S1</code> не может быть заблокированных портов, т.к. он - корневой мост. На <code>S2</code> заблокирован порт <code>e0/0</code>, а не <code>e0/2</code>, т.к. <code>e0/2</code> подключен к <code>e0/1</code> на <code>S1</code>, у которого Port ID меньше, чем у порта <code>e0/2</code> на <code>S1</code>.</p>
+</blockquote>
+<p>В следующем примере логика та же. На <code>S2</code> остался не заблокирован только порт <code>e0/3</code>, который подключен к порту на <code>S1</code> с наименьшим Port ID среди трех вариантов.</p>
+<p><img alt="Роли портов" src="static/100.png" /></p>
+<h3 id="stp_1">Состояния портов STP</h3>
+<p>После загрузки коммутатора начинается работа протокола STP. Каждый порт проходит через несколько состояний порта:</p>
+<ul>
+<li>Блокировка (Blocking)<ul>
+<li>Является альтернативным портом</li>
+<li>Не пересылает кадры</li>
+<li>Принимает BPDU, т.к. нужно знать данные о корневом мосте</li>
+</ul>
+</li>
+<li>Прослушивание (Listening)<ul>
+<li>Готовится к передаче данных</li>
+<li>Принимает BPDU</li>
+<li>Может передавать свои BPDU-кадры</li>
+</ul>
+</li>
+<li>Обучение (Learning)<ul>
+<li>Изучает сеть</li>
+<li>Заполняет таблицу коммутации для дальнейшей пересылки кадров полезной нагрузки</li>
+</ul>
+</li>
+<li>Пересылка (Forwarding)<ul>
+<li>Порт считается частью активной топологии</li>
+<li>Пересылает кадры данных с полезной нагрузкой</li>
+<li>Отправляет и принимает BPDU-кадры</li>
+</ul>
+</li>
+<li>Отключен (Disabled)<ul>
+<li>STP на него не влияет</li>
+<li>Не принимает участие в STP</li>
+<li>Не отправляет и не принимает никакие кадры, даже BPDU</li>
+<li>Отключен администратором</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>⛔ Нельзя пропускать состояния по умолчанию</strong></p>
+<p>Порт не может перейти из состояния блокировки сразу в состояние пересылки, не зная полной топологии, т.к. может образоваться петля и избавиться от нее может быть невозможным без физического отключения провода или коммутатора.</p>
+</blockquote>
+<h3 id="stp_2">Разновидности STP</h3>
+<p><strong>RSTP</strong></p>
+<ul>
+<li>Стандарт IEEE 802.1w</li>
+<li>Более быстрый по сравнению с STP<ul>
+<li>Ускоряется схождение алгоритма</li>
+<li>Пропуск некоторых состояний<ul>
+<li>Discarding (отбрасывание, заменяет disabled, blocking и listening)</li>
+<li>Learning</li>
+<li>Forwarding</li>
+</ul>
+</li>
+<li>Использование специальных флагов в BPDU-кадрах</li>
+</ul>
+</li>
+</ul>
+<p><strong>PVST+</strong></p>
+<ul>
+<li>Per-VLAN Spanning Tree</li>
+<li>Проприетарный протокол Cisco</li>
+<li>Усовершенствованный STP для VLAN</li>
+<li>
+<p>Для каждой VLAN строит свое дерево STP</p>
+<ul>
+<li>Свои корневые мосты</li>
+<li>Свои приоритеты</li>
+<li>Свои роли портов</li>
+</ul>
+<p>На схеме ниже корневой мост для VLAN 10 выбран по умолчанию, а для VLAN 20 - приоритет изменен (уменьшен) на <code>S2</code>.</p>
+<p><img alt="Разные деревья в PVST+" src="static/110.png" /></p>
+<p><strong>❓ Какие роли портов у коммутаторов в каждой VLAN на схеме выше?</strong></p>
+</li>
+<li>
+<p>Функция PortFast</p>
+<ul>
+<li>К порту не подключается другой коммутатор, а подключается конечное устройство</li>
+<li>Сразу состояние пересылки минуя остальные состояния</li>
+</ul>
+<p>На схеме выделены порты, где возможно включение функции portfast. На остальных портах в данном случае нельзя включать portfast, т.к. это может привести к широковещательному шторму.</p>
+<p><img alt="Функция portfast" src="static/120.png" /></p>
+</li>
+<li>
+<p>Функция BPDU guard</p>
+<ul>
+<li>Используется вместе с функцией portfast, чтобы обезопасить сеть от подключения к порту коммутаторов вместо конечных устройств</li>
+<li>При получении на таком порту BPDU-кадра порт перейдет в защитное состояние - заблокируется, т.к. на порту не допускает получения BPDU-кадров</li>
+</ul>
+</li>
+</ul>
+<p><strong>Rapid PVST+</strong></p>
+<ul>
+<li>Усовершенствованный RSTP для VLAN</li>
+<li>Проприетарный протокол Cisco</li>
+</ul>
+<p><strong>MSTP</strong></p>
+<ul>
+<li>Открытый стандарт</li>
+<li>Строит отдельное дерево STP для каждого экземпляра<ul>
+<li>В случае PVST+, для каждого VLAN рассчитывается своя топология, тратится время ЦП и память</li>
+<li>В случае MSTP топология рассчитывается на один экземпляр</li>
+</ul>
+</li>
+<li>В одном экземпляре может быть только один VLAN или несколько VLAN, если для них нужно одинаковое дерево STP. Объединение нескольких VLAN в одном экземпляре позволяет экономить вычислительные ресурсы</li>
+<li>Коммутаторы объединяются в регионы<ul>
+<li>Внутри региона строятся деревья для каждого экземпляра</li>
+<li>Между регионами строится отдельное дерево - MST0 (экземпляр/instance 0)</li>
+</ul>
+</li>
+<li>Если используется только один инстанс 0, то это равносильно отсутствию VLAN, и на всей схеме будет одно дерево</li>
+</ul>
+<p><img alt="Пример MSTP регионов" src="static/130.png" /></p>
+<h2 id="cisco">Примеры (Cisco)</h2>
+<p>Поскольку на Cisco по умолчанию используется PVST+, то в начале каждого примера необходимо настроить режим MSTP.</p>
+<div class="highlight"><pre><span></span><code>conf t
+spanning-tree mode mst
+end
+</code></pre></div>
+<h3 id="1">Пример 1</h3>
+<p>Условия:
+- Один инстанс MSTP - MST0
+- Одна VLAN - 1</p>
+<p><img alt="Пример 1" src="static/140.png" /></p>
+<p>Выяснить, какие порты заблокированы по умолчанию, можно с помощью команды</p>
+<div class="highlight"><pre><span></span><code>show spanning-tree mst
+</code></pre></div>
+<p>Среди всего вывода нужно найти такие интерфейсы, у которых в поле <code>Sts (Status)</code> указано <code>BLK</code> (заблокирован), а <code>Role</code> - <code>Altn</code> (альтернативный).</p>
+<p>Ниже представлен вывод только на <code>S4</code>, т.к. только там порты заблокированы.</p>
+<div class="highlight"><pre><span></span><code>S4#show spanning-tree mst
+
+##### MST0    vlans mapped:   1-4094
+Bridge        address aabb.cc00.0400  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+              port    Et0/3           path cost     0
+Regional Root address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+                                      internal cost 2000000   rem hops 19
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Altn BLK 2000000   128.1    P2p
+Et0/1            Altn BLK 2000000   128.2    P2p
+Et0/2            Desg BLK 2000000   128.3    P2p
+Et0/3            Root FWD 2000000   128.4    P2p
+...
+</code></pre></div>
+<p>Корневым портом является <code>e0/3</code>, т.к. через него ближе до корневого моста, а остальные порты заблокированы.</p>
+<p>Если задать на ПК адреса, то "пинг" между ними будет проходить кратчайшим путем: <code>S1 - S2</code>.</p>
+<p>Стоимость до корневого моста равна 2 000 000. Если отключить порт <code>e0/3</code>, то стоимость изменится - 4 000 000.</p>
+<div class="highlight"><pre><span></span><code>S4#show spanning-tree mst
+
+##### MST0    vlans mapped:   1-4094
+Bridge        address aabb.cc00.0400  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+              port    Et0/1           path cost     0
+Regional Root address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+                                      internal cost 4000000   rem hops 18
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Altn BLK 2000000   128.1    P2p
+Et0/1            Root FWD 2000000   128.2    P2p
+Et0/2            Desg LRN 2000000   128.3    P2p
+Et1/0            Desg LRN 2000000   128.5    P2p
+...
+</code></pre></div>
+<p><strong>Изменение пути прохождения трафика</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Все порты должны быть включены</p>
+</div>
+<p>Чтобы заставить проходить трафик между ПК самым длинным путем, необходимо менять стоимость на портах.</p>
+<p>По умолчанию в данном случае стоимость на портах равна 2 000 000.</p>
+<p>На <code>S2</code> стоимость порта <code>e0/2</code> должна превышать стоимость длинного пути (3 х 2 000 000). Необходимо либо увеличить стоимость на <code>e0/2</code>, либо уменьшить стоимость на длинном пути. Далее демонстрируется первый вариант.</p>
+<div class="highlight"><pre><span></span><code>S2#
+
+conf t
+int e0/2
+spanning-tree mst 0 cost 6000001
+end
+</code></pre></div>
+<p>Теперь на <code>S2</code> до корневого моста лежит через <code>S4</code>, но путь все еще не самый длинный, т.к. от <code>S4</code> он сразу идет на <code>S1</code>. На <code>S4</code> также нужно изменить стоимость.</p>
+<div class="highlight"><pre><span></span><code>S2#show spanning-tree mst
+
+##### MST0    vlans mapped:   1-4094
+Bridge        address aabb.cc00.0200  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+              port    Et0/1           path cost     0
+Regional Root address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+                                      internal cost 4000000   rem hops 18
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Root FWD 2000000   128.2    P2p
+Et0/2            Altn BLK 6000001   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>#S4
+
+conf t
+int e0/3
+spanning-tree mst 0 cost 4000001
+end
+</code></pre></div>
+<p>После этого на <code>S2</code> изменится стоимость до корневого моста на 6 000 000, что будет означать, что используется самый длинный (не по стоимости) путь из коммутаторов.</p>
+<div class="highlight"><pre><span></span><code>S2#show spanning-tree mst
+
+##### MST0    vlans mapped:   1-4094
+Bridge        address aabb.cc00.0200  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+              port    Et0/1           path cost     0
+Regional Root address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+                                      internal cost 6000000   rem hops 17
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Root FWD 2000000   128.2    P2p
+Et0/2            Altn BLK 6000001   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+...
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Какие порты заблокированы на остальных коммутаторах?</p>
+</div>
+<p>Если теперь выполнить "пинг" между ПК, то пакеты будут проходить по пути <code>S1 - S3 - S4 - S2</code>.</p>
+<p><strong>Отключение STP</strong></p>
+<p>Т.к. STP по умолчанию обычно включен, то проблем нет. Что будет, если его отключить?</p>
+<p>Чтобы изучить это, нужен широковещательный трафик. Проще всего его получить "пингом", т.к. из-за него может генерироваться ARP-запрос. Для этого нужно задать IP-адреса на ПК.</p>
+<p>При включенном (M)STP, ПК будут "пинговаться". ARP-запрос не будет бесконечно блуждать по широковещательному домену.</p>
+<p>Теперь необходимо отключить на <code>S4</code> порт <code>e0/3</code>. Теперь одного физического канала фактически нет. После этого необходимо перевести STP в режим PVST+, и отключить его на каждом коммутаторе (для "надежности").</p>
+<div class="highlight"><pre><span></span><code>conf t
+sp mode pvst
+no sp vlan 1
+end
+</code></pre></div>
+<p>Если теперь выполнить "пинг" с одного ПК на другой, то должен отправиться ARP-запрос, который будет блуждать по сети бесконечно. При этом устройства могут подтормаживать, а ICMP-сообщения не уходить и не приходить. Пронаблюдать все это можно с помощью Wireshark 🦈.</p>
+<p>Если прошлые действия не привели к потере ICMP-сообщений, то можно обратно включить порт <code>e0/3</code> на <code>S4</code>. Вновь, выполнив "пинг", сразу или подождав, любые пакеты станут пропадать, т.к. теперь широковещательные кадры будут "размножаться" из-за тройного соединения на <code>S1</code> и <code>S4</code>.</p>
+<h3 id="2">Пример 2</h3>
+<p>Условия:
+- MST0 (VLAN 1)
+- Изменить корневой мост с <code>S1</code> на <code>S3</code></p>
+<p><img alt="Изменение корневого моста" src="static/150.png" /></p>
+<p>Исходя из допущений, корневой мост - <code>S1</code>.</p>
+<div class="highlight"><pre><span></span><code>S3#show spanning-tree mst
+
+##### MST0    vlans mapped:   1-4094
+Bridge        address aabb.cc00.0300  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+              port    Et0/1           path cost     0
+Regional Root address aabb.cc00.0100  priority      32768 (32768 sysid 0)
+                                      internal cost 2000000   rem hops 19
+...
+</code></pre></div>
+<p>Чтобы изменить корневой мост, нужно изменить приоритеты коммутаторов так, чтобы у необходимого коммутатора приоритет стал ниже всех.</p>
+<p><strong>Настройка S3</strong></p>
+<div class="highlight"><pre><span></span><code>conf t
+spanning-tree mode mst
+spanning-tree mst 0 priority 4096
+end
+</code></pre></div>
+<p>В выводе необходимо убедиться, что корневым мостом стал <code>S3</code>.</p>
+<div class="highlight"><pre><span></span><code>S3#show spanning-tree mst
+
+##### MST0    vlans mapped:   1-4094
+Bridge        address aabb.cc00.0300  priority      4096  (4096 sysid 0)
+Root          this switch for the CIST
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+...
+</code></pre></div>
+<blockquote>
+<p><strong>❓ Какие порты заблокированы ДО и ПОСЛЕ изменения корневого моста?</strong></p>
+<p>До: <code>e0/0</code> на S3</p>
+<p>После: <code>e0/0</code> на S2</p>
+</blockquote>
+<h3 id="3">Пример 3</h3>
+<p><img alt="Пример настройки MSTP" src="static/160.png" /></p>
+<p><strong>Условия</strong></p>
+<ul>
+<li>Два региона</li>
+<li>В регионе A два инстанса + инстанс по умолчанию (MST 0) для всего остального<ul>
+<li>Один инстанс (MST 2) для VLAN 20 и 30</li>
+<li>Корневой мост для MST 1 - <code>S1</code></li>
+<li>Корневой мост для MST 2 - <code>S2</code></li>
+<li>Корневой мост для MST 0 - <code>S4</code></li>
+</ul>
+</li>
+<li>В регионе B один инстанс + инстанс по умолчанию (MST 0) для всего остального<ul>
+<li>Один инстанс (MST 1) для VLAN 10</li>
+<li>Корневой мост для MST 1 - <code>S6</code></li>
+<li>Корневой мост для MST 0 - <code>S5</code></li>
+</ul>
+</li>
+<li>CIST - <code>S5</code><ul>
+<li>Это корневой мост для всех регионов</li>
+<li>Нужен, чтобы блокировать порты между регионами</li>
+</ul>
+</li>
+</ul>
+<p><strong>Настройка на всех коммутаторах на схеме</strong></p>
+<div class="highlight"><pre><span></span><code>conf t
+span mode mst
+end
+</code></pre></div>
+<p><strong>Настройка региона B</strong></p>
+<p>Регион B настраивается аналогично примеру 2, только теперь тут вместо VLAN 1 - VLAN 10.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">S3</label><label for="__tabbed_1_2">S6</label><label for="__tabbed_1_3">S5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+spanning-tree mst configuration
+instance 1 vlan 10
+exit
+
+vlan 10
+name VLAN10
+exit
+
+int e0/2
+sw mode access
+sw ac vl 10
+exit
+
+int range e0/0 , e0/1 , e0/3
+sw tr enc dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+spanning-tree mst configuration
+instance 1 vlan 10
+exit
+
+vlan 10
+name VLAN10
+exit
+
+int e0/2
+sw mode access
+sw ac vl 10
+exit
+
+int range e0/0 - 1
+sw tr enc dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+vlan 10
+name VLAN10
+exit
+
+spanning-tree mst configuration
+instance 1 vlan 10
+exit
+
+spanning-tree mst 0 priority 4096
+
+int range e0/0 , e0/2-3, e1/0
+sw tr enc dot
+sw mode tr
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>Проверка настроек региона B</strong></p>
+<p><strong>MST0 на S3</strong></p>
+<div class="highlight"><pre><span></span><code>S3# sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-4094
+Bridge        address aabb.cc00.0300  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+              port    Et0/3           path cost     0
+Regional Root address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+                                      internal cost 2000000   rem hops 19
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Root FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+...
+</code></pre></div>
+<p><code>Regional Root address aabb.cc00.0500</code> говорит о том, что <code>S5</code> стал корневым мостом в данном регионе в <code>MST0</code>.</p>
+<p><code>Root          address aabb.cc00.0500</code> говорит о том, что <code>S5</code> стал корневым мостом во всей схеме для <code>MST0</code>.</p>
+<p><strong>MST1 на S3</strong></p>
+<div class="highlight"><pre><span></span><code>S3# sh sp mst 1
+
+##### MST1    vlans mapped:   10
+Bridge        address aabb.cc00.0300  priority      32769 (32768 sysid 1)
+Root          address aabb.cc00.0600  priority      4097  (4096 sysid 1)
+              port    Et0/1           cost          2000000   rem hops 19
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Root FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+</code></pre></div>
+<p><code>Root          address aabb.cc00.0600</code> говорит о том, что <code>S6</code> стал корневым мостом для <code>MST1</code> в данном регионе.</p>
+<p><strong>MST0 на S6</strong></p>
+<div class="highlight"><pre><span></span><code>S6#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-4094
+Bridge        address aabb.cc00.0600  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+              port    Et0/0           path cost     0
+Regional Root address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+                                      internal cost 2000000   rem hops 19
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Root FWD 2000000   128.1    P2p
+Et0/1            Altn BLK 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+...
+</code></pre></div>
+<p><strong>MST1 на S6</strong></p>
+<div class="highlight"><pre><span></span><code>S6#sh sp mst 1
+
+##### MST1    vlans mapped:   10
+Bridge        address aabb.cc00.0600  priority      4097  (4096 sysid 1)
+Root          this switch for MST1
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+</code></pre></div>
+<p><code>Root          this switch for MST1</code> говорит о том, что <code>S6</code> стал корневым мостом для <code>MST1</code> в данном регионе.</p>
+<p><strong>MST0 на S5</strong></p>
+<div class="highlight"><pre><span></span><code>S5#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-4094
+Bridge        address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+Root          this switch for the CIST
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+Et1/2            Desg FWD 2000000   128.7    P2p
+...
+</code></pre></div>
+<p><strong>MST1 на S5</strong></p>
+<div class="highlight"><pre><span></span><code>S5#sh sp mst 1
+
+##### MST1    vlans mapped:   10
+Bridge        address aabb.cc00.0500  priority      32769 (32768 sysid 1)
+Root          address aabb.cc00.0600  priority      4097  (4096 sysid 1)
+              port    Et0/2           cost          2000000   rem hops 19
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/2            Root FWD 2000000   128.3    P2p
+Et0/3            Altn BLK 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+</code></pre></div>
+<p><strong>Настройка региона A</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">S1</label><label for="__tabbed_2_2">S4</label><label for="__tabbed_2_3">S2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+spanning-tree mst configuration
+instance 1 vlan 10
+instance 2 vlan 20,30
+exit
+
+spanning-tree mst 1 priority 4096
+
+vlan 10
+name VLAN10
+exit
+vlan 20
+name VLAN20
+exit
+vlan 30
+name VLAN30
+exit
+
+int e0/2
+sw mode access
+sw ac vl 10
+exit
+
+int range e0/0 , e0/1
+sw tr enc dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+spanning-tree mst configuration
+instance 1 vlan 10
+instance 2 vlan 20,30
+exit
+
+vlan 10
+name VLAN10
+exit
+vlan 20
+name VLAN20
+exit
+vlan 30
+name VLAN30
+exit
+
+int e0/2
+sw mode access
+sw ac vl 10
+exit
+
+int e0/3
+sw mode access
+sw ac vl 20
+exit
+
+int e1/0
+sw mode access
+sw ac vl 30
+exit
+
+int range e0/0 , e0/1 , e1/1
+sw tr enc dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>conf t
+
+spanning-tree mst configuration
+instance 1 vlan 10
+instance 2 vlan 20,30
+exit
+
+spanning-tree mst 0 priority 4096
+spanning-tree mst 2 priority 4096
+
+vlan 10
+name VLAN10
+exit
+vlan 20
+name VLAN20
+exit
+vlan 30
+name VLAN30
+exit
+
+int e1/0
+sw mode access
+sw ac vl 30
+exit
+
+int e0/3
+sw mode access
+sw ac vl 20
+exit
+
+int range e0/0-2 , e1/1
+sw tr enc dot1q
+sw mode trunk
+end
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>Проверка настроек региона A</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">S1</label><label for="__tabbed_3_2">S2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>S2#sh sp mst 1
+
+##### MST1    vlans mapped:   10
+Bridge        address aabb.cc00.0200  priority      32769 (32768 sysid 1)
+Root          address aabb.cc00.0100  priority      4097  (4096 sysid 1)
+            port    Et0/0           cost          2000000   rem hops 19
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Root FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+</code></pre></div>
+<p><code>Root          address aabb.cc00.0100</code> говорит о том, что для <code>MST1</code> корневой мост - <code>S1</code>.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>S2#sh sp mst 2
+
+##### MST2    vlans mapped:   20,30
+Bridge        address aabb.cc00.0200  priority      4098  (4096 sysid 2)
+Root          this switch for MST2
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+</code></pre></div>
+<p><code>Root          this switch for MST2</code> говорит о том, что для <code>MST2</code> корневой мост - <code>S2</code>.</p>
+</div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>S2#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-19,21-29,31-4094
+Bridge        address aabb.cc00.0200  priority      4096  (4096 sysid 0)
+Root          this switch for the CIST
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+...
+</code></pre></div>
+<p><code>Root          this switch for the CIST</code> говорит о том, что для <code>MST1</code> корневой мост - <code>S2</code>, т.е. самый главный коммутатор во всей сети - <code>S2</code>. По условию им должен был стать <code>S5</code>. Так получилось потому, что в <code>MST0</code> у <code>S2</code> и <code>S5</code> одинаковый приоритет - 4096. Но, поскольку у <code>S5</code> MAC-адрес больше, то главнее становится <code>S2</code>. Чтобы исправить ситуацию, на <code>S2</code> необходимо увеличить приоритет.</p>
+<p><strong>Настройка S2</strong></p>
+<div class="highlight"><pre><span></span><code>conf t
+spanning-tree mst 0 priority 8192
+end
+</code></pre></div>
+<p>После этого все станет так, как задумано.</p>
+<div class="highlight"><pre><span></span><code>S2#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-19,21-29,31-4094
+Bridge        address aabb.cc00.0200  priority      8192  (8192 sysid 0)
+Root          address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+              port    Et0/1           path cost     2000000
+Regional Root this switch
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Root FWD 2000000   128.2    P2p Bound(RSTP)
+Et0/2            Altn BLK 2000000   128.3    P2p Bound(RSTP)
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+...
+</code></pre></div>
+<p><strong>Какие порты блокируются между регионами?</strong></p>
+<p>Для этого нужно анализировать <code>MST0</code>.</p>
+<p>Поскольку CIST - <code>S5</code>, то на нем не может быть заблокированных портов. У него все порты - назначенные.</p>
+<div class="highlight"><pre><span></span><code>S5#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-4094
+Bridge        address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+Root          this switch for the CIST
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+Et1/2            Desg FWD 2000000   128.7    P2p
+...
+</code></pre></div>
+<ul>
+<li>В каждом регионе есть региональный корневой коммутатор для <code>MST0</code></li>
+<li>Остальные коммутаторы в каждом регионе строят путь до этого регионального корневого коммутатора</li>
+<li>Между регионами строятся кратчайшие пути между региональными корневыми коммутаторами</li>
+</ul>
+<p><code>S2</code> - региональный корневой коммутатор для <code>MST0</code>, поэтому внутри региона не может быть заблокированных портов. Но он соединен двумя каналами с другим регионом, и среди них выбирается корневым тот, через который ближе до CIST - <code>e0/1</code>.</p>
+<div class="highlight"><pre><span></span><code>S2#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-19,21-29,31-4094
+Bridge        address aabb.cc00.0200  priority      8192  (8192 sysid 0)
+Root          address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+              port    Et0/1           path cost     2000000
+Regional Root this switch
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Root FWD 2000000   128.2    P2p Bound(RSTP)
+Et0/2            Altn BLK 2000000   128.3    P2p Bound(RSTP)
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+Et1/2            Desg FWD 2000000   128.7    P2p
+...
+</code></pre></div>
+<p><code>S3</code> и <code>S4</code> строят пути только до регионального корневого коммутатора для <code>MST0</code>.</p>
+<div class="highlight"><pre><span></span><code>S4#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-19,21-29,31-4094
+Bridge        address aabb.cc00.0400  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+              port    Et1/1           path cost     2000000
+Regional Root address aabb.cc00.0200  priority      8192  (8192 sysid 0)
+                                      internal cost 2000000   rem hops 19
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Altn BLK 2000000   128.1    P2p Bound(RSTP)
+Et0/1            Altn BLK 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Desg FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Root FWD 2000000   128.6    P2p
+Et1/2            Desg FWD 2000000   128.7    P2p
+...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>S3#sh sp mst 0
+
+##### MST0    vlans mapped:   1-9,11-4094
+Bridge        address aabb.cc00.0300  priority      32768 (32768 sysid 0)
+Root          address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+              port    Et0/3           path cost     0
+Regional Root address aabb.cc00.0500  priority      4096  (4096 sysid 0)
+                                      internal cost 2000000   rem hops 19
+Operational   hello time 2 , forward delay 15, max age 20, txholdcount 6
+Configured    hello time 2 , forward delay 15, max age 20, max hops    20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Et0/0            Desg FWD 2000000   128.1    P2p
+Et0/1            Desg FWD 2000000   128.2    P2p
+Et0/2            Desg FWD 2000000   128.3    P2p
+Et0/3            Root FWD 2000000   128.4    P2p
+Et1/0            Desg FWD 2000000   128.5    P2p
+Et1/1            Desg FWD 2000000   128.6    P2p
+Et1/2            Desg FWD 2000000   128.7    P2p
+...
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Важно</strong></p>
+<p>Если изменить региональный корневой мост в регионе B на <code>S6</code>, то на <code>S2</code> будет корневым тот порт, который подключен к коммутатору с наименьшим приоритетом. Например, у <code>S5</code> приоритет - 8192, <code>S3</code> - по умолчанию, <code>S6</code> - 4096. Тогда на <code>S2</code> будет корневым порт <code>e0/1</code>.</p>
+<p>Если приоритеты одинаковые, то сравниваются MAC-адреса.</p>
+<p>В целом, идея та же, что при отсутствии регионов.</p>
+</blockquote>
+<h2 id="_10">🧠 Самостоятельная работа</h2>
+<ol>
+<li>Повторить пример 1. Выполнить описанную работу по изменению стоимости путей и изучить результат. Рекомендуется также видоизменять схему и проверять роли портов их статус и стоимости до корневого моста.</li>
+<li>Повторить пример 2. Сделать корневым мостом <code>S2</code> и чтобы заблокированным портом был <code>e0/0</code> на <code>S1</code>.</li>
+<li>
+<p>Полностью повторить пример 3. С помощью Wireshark изучить MSTP-трафик.</p>
+<ul>
+<li>Вместо VLAN 10 использовать VLAN <code>x * 100 + 10</code></li>
+<li>Вместо VLAN 20 использовать VLAN <code>x * 100 + 20</code></li>
+<li>Вместо VLAN 30 использовать VLAN <code>x * 100 + 30</code></li>
+<li>Сеть для ПК - <code>192.168.x.0/24</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="_11">🧰 Лабораторная работа</h2>
+<details class="info">
+<summary>Ознакомиться перед выполнением <strong>любой</strong> лабораторной работы (список раскрывается)</summary>
+<ul>
+<li>Вместо ❔ или <code>x</code> нужно подставить свой номер по журналу</li>
+<li>Выполнять задание без "отмашки" <strong>не стоит</strong> ⛔, т.к. задание здесь может существовать более актуальная версия</li>
+<li>У каждой работы есть <strong>срок сдачи</strong> 📅, который озвучивается на занятии, после которого работа не может быть защищена на максимальный балл 📉</li>
+<li><strong>Дополнительные задания</strong> 📚  не являются обязательными, но по результатам сдачи лабораторной работы может быть выдано одно или несколько из них. Также дополнительное задание может быть сформулировано <strong>устно</strong></li>
+<li>Для каждой лабораторной работы должен быть <strong>отчет</strong> 📝 с описанием выполнения ваших действий, оформление должно соответствовать требованиям (см. на сайте учебного заведения)</li>
+<li>Нужно уметь ответить на <strong>вопросы</strong> ❓ по теме, контрольные вопросы и другие связанные вопросы</li>
+<li>Примеры могут быть выполнены <strong>по желанию</strong>, а также выданы в качестве дополнительного задания с изменениями или без <strong>в случае неуспешной 😢 защиты основной работы</strong></li>
+<li>Иногда в работах встречаются задания по <strong>IPv4 и IPv6</strong> одновременно 🔗. Это считается как <strong>одна работа</strong>. Допускается сдача работы только с IPv4 или только с IPv6, но <strong>максимальный балл</strong> в таком случае <strong>получить невозможно</strong></li>
+</ul>
+</details>
+<p><strong>🎯 Цель работы:</strong> получить навыки настройки протокола MSTP.</p>
+<div class="admonition warning">
+<p class="admonition-title">Перед выполнением задания настоятельно рекомендуется разобраться с примерами и выполнить самостоятельную работу.</p>
+</div>
+<h3 id="_12">🌐 Схема</h3>
+<p><img alt="img" src="static/lab.png" /></p>
+<h3 id="_13">✔️ Условия</h3>
+<ol>
+<li>Адресация для каждой VLAN указана на схеме</li>
+<li>Корневые коммутаторы для VLAN в регионах указаны на схеме. Если не указан - произвольный</li>
+<li>Региональный корневой коммутатор в <code>MSI0</code><ol>
+<li>У четного варианта - коммутатор с наибольшим номером в названии</li>
+<li>У нечетного варианта - коммутатор с наименьшим номером в названии</li>
+</ol>
+</li>
+<li>ПК внутри одной VLAN должны "пинговаться"</li>
+<li>При отключении любого провода или нескольких (или отключении любых коммутаторов), если есть физическая возможность, ПК должны "пинговаться"</li>
+<li>При переводе любого ПК в другую VLAN (и изменении IP-адреса, если нужно) он должен "пинговаться" с другими ПК той же VLAN</li>
+<li>При переключении любого ПК к любому другому коммутатору (и переводе порта в соответствующую VLAN) он должен "пинговаться" с другими ПК той же VLAN</li>
+<li>При отключении <code>S9</code> корневым мостом CIST должен стать <code>S6</code></li>
+</ol>
+<h3 id="_14">🤔 Контрольные вопросы</h3>
+<ol>
+<li>Какими способами можно остановить широковещательный шторм?</li>
+<li>Какие версии STP существуют и чем они отличаются?</li>
+<li>Что такое RootID и BridgeID?</li>
+<li>По каким правилам блокируются порты?</li>
+</ol>
+<style>
+    .copyright {
+        color: gray;
+        font-size: 0.6rem;
+    }
+</style>
+
+<div class="copyright">
+
+<hr>
+
+<!--Используя данный сайт и его ресурсы, вы соглашаетесь с <a href=/policy/> политикой и соглашениями сайта</a>.<br>-->
+
+©️ Оформление, изложение, медиаконтент. И. Попов, 2020-2025<br>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.top"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
